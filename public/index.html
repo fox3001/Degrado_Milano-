@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Vizi Nascosti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --parch:#F5EDD6;--parch2:#EDE0BE;--ink:#1C1208;--ink2:#3D2B0E;
+  --red:#8B1A1A;--gold:#C8960C;--gold2:#E8B84B;--blue:#1A3A5C;--border:#8B6914;
+}
+html,body{background:#1C1208;font-family:'IM Fell English',Georgia,serif;color:var(--ink);}
+button{cursor:pointer;font:inherit;border:none;background:none;}
+button:disabled{opacity:.5;cursor:default;}
+input{font:inherit;color:inherit;}
+@keyframes dam-scroll{from{background-position:0 0;}to{background-position:-280px -280px;}}
+
+/* SCHERMATE */
+.page{display:none;min-height:100vh;flex-direction:column;}
+.page.on{display:flex;}
+
+/* HOME */
+#p-splash{background:#0E0A04;align-items:center;justify-content:flex-end;text-align:center;padding:20px 20px 40px;position:relative;overflow:visible;}
+#p-splash::before{content:"";position:absolute;inset:0;background:url("img/damask.jpg") center/280px auto repeat;filter:grayscale(1) sepia(1) saturate(4) hue-rotate(10deg) brightness(0.55);opacity:0.13;pointer-events:none;z-index:0;animation:dam-scroll 25s linear infinite;}
+.swrap{position:relative;z-index:1;max-width:320px;width:100%;margin:0 auto;}
+.spillo{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);width:220px;margin-bottom:-28px;z-index:10;pointer-events:none;}
+.sframe{border:1px solid var(--gold);padding:0 24px 20px;width:100%;background:rgba(18,12,2,0.9);position:relative;}
+.sorn{font-family:'Cinzel',serif;font-size:9px;letter-spacing:6px;color:var(--gold2);margin-bottom:8px;}
+.stitle{font-family:'Cinzel Decorative',serif;font-size:36px;color:var(--gold2);line-height:1.1;margin-bottom:6px;text-shadow:0 0 30px rgba(200,150,12,.3);}
+.ssub{font-family:'Cinzel',serif;font-size:9px;letter-spacing:7px;color:#6A5020;margin-bottom:14px;}
+.clabel{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:#6A5020;display:block;margin-bottom:10px;}
+.cinput{width:100%;background:rgba(255,255,255,.04);border:1px solid #4A3008;padding:10px;font-family:'Cinzel',serif;font-size:18px;letter-spacing:6px;color:var(--gold2);text-align:center;text-transform:uppercase;outline:none;margin-bottom:12px;}
+.cinput:focus{border-color:var(--gold);}
+.cinput::placeholder{color:#2A1A04;letter-spacing:4px;}
+.bgold{display:block;width:100%;background:linear-gradient(135deg,#906008,#C8960C,#906008);color:#1C1208;font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;padding:14px;font-weight:700;border:1px solid #806008;}
+.berr{font-size:14px;color:#C04040;margin-top:8px;font-style:italic;min-height:18px;}
+
+/* AREA GUIDA */
+#p-guide{background:var(--parch);}
+.ghdr{background:var(--ink);padding:20px 24px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.gbadge{background:var(--red);color:var(--parch);font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;padding:4px 10px;}
+.ghtitle{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--parch);flex:1;}
+.glogout{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--gold2);text-decoration:underline;}
+.gbody{flex:1;overflow-y:auto;padding:28px 24px;}
+.glabel{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--ink2);margin-bottom:12px;display:block;}
+.ginput{width:100%;background:var(--parch2);border:1px solid var(--border);padding:12px;font-size:16px;color:var(--ink);margin-bottom:12px;outline:none;}
+.gsec{margin-top:24px;border-top:1px solid var(--border);padding-top:20px;}
+.gnote{margin-top:12px;font-size:13px;color:#777;font-style:italic;line-height:1.6;}
+.gerr{font-size:13px;color:var(--red);margin-top:8px;font-style:italic;min-height:16px;}
+.gstate{background:var(--parch2);border:1px solid var(--border);padding:12px 14px;font-size:14px;line-height:1.6;margin-bottom:16px;}
+.numrow{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.nbtn{width:44px;height:44px;border:1px solid var(--border);background:var(--parch2);font-size:22px;color:var(--ink);display:flex;align-items:center;justify-content:center;}
+.nval{font-family:'Cinzel Decorative',serif;font-size:32px;color:var(--red);min-width:44px;text-align:center;}
+.bink{display:block;width:100%;background:var(--ink);color:var(--parch);font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;padding:14px;border:1px solid var(--ink2);}
+.bline{display:block;width:100%;background:transparent;color:var(--ink2);font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;padding:12px;border:1px solid var(--border);margin-top:10px;}
+.bback{display:block;width:100%;background:transparent;color:#999;font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;padding:12px;border:1px solid #ccc;margin-top:20px;}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+.ctile{background:var(--parch2);border:1px solid var(--border);padding:12px 14px;display:flex;align-items:center;justify-content:space-between;}
+.ccode{font-family:'Cinzel',serif;font-size:18px;letter-spacing:4px;color:var(--ink);}
+.pip{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;padding:3px 8px;border:1px solid;}
+.pnob{color:#A07010;border-color:#A07010;}.pviz{color:var(--red);border-color:var(--red);}
+.pmor{color:#555;border-color:#999;}.pcic{color:var(--blue);border-color:var(--blue);}
+
+/* SCHEDA GIOCATORE */
+#p-player{position:relative;height:100vh;height:100dvh;min-height:0;overflow:hidden;background:var(--parch);}
+#card-track{display:flex;height:100%;transition:transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94);will-change:transform;}
+.pcard{flex:0 0 100%;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;}
+.card-bg{position:relative;background:var(--parch);min-height:100%;padding:28px 20px 60px;}
+.card-bg::before{content:"";position:absolute;inset:0;background:url("img/damask.jpg") center/280px auto repeat;filter:grayscale(1) sepia(0.7) brightness(0.85);opacity:0.10;pointer-events:none;z-index:0;animation:dam-scroll 30s linear infinite;}
+.card-bg>*{position:relative;z-index:1;}
+#pc-image{background:#FFF8EE url("img/damask.jpg") center/280px auto repeat;}
+#pc-image.zoomed{overflow:hidden;touch-action:none;}
+#role-img{display:block;width:100%;height:auto;transform-origin:0 0;}
+.zhint{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--ink2);background:var(--parch);text-align:center;padding:12px 8px 44px;}
+#card-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10;}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(28,18,8,0.22);border:1px solid rgba(255,248,238,.8);transition:background 0.3s,transform 0.3s;}
+.dot.on{background:var(--ink);transform:scale(1.25);}
+
+/* CONTENUTI */
+.sectitle{font-family:'Cinzel',serif;font-size:9px;letter-spacing:6px;color:var(--border);text-align:center;margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+.sectitle::before,.sectitle::after{content:'';flex:1;height:1px;background:var(--border);opacity:.35;}
+.whoami{text-align:center;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--parch2);}
+.pname{font-family:'Cinzel Decorative',serif;font-size:clamp(16px,5.5vw,22px);color:var(--ink);margin-bottom:6px;}
+.pdesc{font-style:italic;color:var(--ink2);font-size:14px;margin-bottom:14px;line-height:1.5;}
+.rtagin{font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;padding:5px 16px;border:1px solid;display:inline-block;margin-bottom:16px;}
+.toklabel{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--border);margin-bottom:8px;}
+.dotrow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.tok{background:var(--parch2);border:1px solid var(--border);padding:5px 11px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;display:flex;align-items:center;gap:5px;}
+.tokn{font-size:17px;color:var(--red);font-family:'Cinzel Decorative',serif;}
+.obpage{margin-bottom:14px;padding-bottom:30px;border-bottom:1px solid var(--parch2);}
+.obpage:last-child{border-bottom:none;margin-bottom:0;}
+.obh{font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--ink);margin-bottom:3px;}
+.obl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;margin-bottom:14px;}
+.obt{font-size:15px;color:var(--ink2);line-height:1.8;margin-bottom:12px;}
+.obt strong{color:var(--ink);}
+.obn{border-left:3px solid var(--border);padding:10px 14px;background:rgba(139,105,20,.06);font-size:13px;color:var(--ink2);font-style:italic;line-height:1.6;}
+.divorn{text-align:center;color:var(--border);font-size:12px;letter-spacing:8px;margin:24px 0;}
+.rblock{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--parch2);}
+.rblock:last-of-type{border-bottom:none;margin-bottom:0;}
+.rtitle{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--red);margin-bottom:8px;text-transform:uppercase;}
+.rtext{font-size:15px;color:var(--ink2);line-height:1.75;}
+.rtext strong{color:var(--ink);}
+.rformula{background:var(--parch2);border:1px solid var(--border);padding:12px;margin:10px 0;font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;color:var(--ink);text-align:center;}
+.rwarn{border-left:3px solid var(--red);padding:10px 14px;background:rgba(139,26,26,.05);font-size:13px;color:var(--ink2);font-style:italic;line-height:1.6;margin-top:10px;}
+.bhome{display:block;width:100%;margin-top:28px;background:transparent;color:var(--ink2);font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;padding:14px;border:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="p-splash" class="page on">
+  <div class="swrap">
+    <img class="spillo" src="img/spillo.png" alt="Spillo">
+    <div class="sframe">
+      <div class="sorn">MILANO &nbsp;·&nbsp; SEICENTO</div>
+      <div class="stitle">VIZI<br>NASCOSTI</div>
+      <div class="ssub">Un gioco segreto per la corte</div>
+      <label class="clabel" for="ci">Inserisci il tuo codice</label>
+      <input id="ci" class="cinput" type="text" maxlength="6" placeholder="· · · ·" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false">
+      <button class="bgold" id="btnEntra">Entra nella Corte</button>
+      <div id="berr" class="berr"></div>
+    </div>
+  </div>
+</div>
+
+<!-- AREA GUIDA: si apre solo da indirizzo/#guida -->
+<div id="p-guide" class="page">
+  <div class="ghdr"><span class="gbadge">PRIVATO</span><span class="ghtitle">Alcova della Guida</span><button id="btnLogout" class="glogout" hidden>Esci</button></div>
+  <div class="gbody">
+
+    <!-- Login della guida -->
+    <div id="gLogin">
+      <span class="glabel">Accesso guida</span>
+      <input id="gEmail" class="ginput" type="email" placeholder="Email" autocomplete="username">
+      <input id="gPass" class="ginput" type="password" placeholder="Password" autocomplete="current-password">
+      <button class="bink" id="btnLogin">Entra</button>
+      <div id="gLoginErr" class="gerr"></div>
+    </div>
+
+    <!-- Pannello della guida -->
+    <div id="gPanel" hidden>
+      <div id="gState" class="gstate">Caricamento…</div>
+
+      <span class="glabel">Numero di giocatori</span>
+      <div class="numrow">
+        <button class="nbtn" id="btnMeno" aria-label="Meno">&#8722;</button>
+        <span class="nval" id="nval">20</span>
+        <button class="nbtn" id="btnPiu" aria-label="Più">+</button>
+        <span style="font-size:13px;color:#888;font-style:italic;">20 &ndash; 30</span>
+      </div>
+      <button class="bink" id="btnGen">Nuova partita: genera codici e ruoli</button>
+      <div id="genErr" class="gerr"></div>
+
+      <div id="codeList" hidden style="margin-top:20px;">
+        <span class="glabel">Codici da consegnare</span>
+        <div id="cgrid" class="cgrid"></div>
+        <p class="gnote">Manda ogni codice al singolo giocatore: solo lui vedrà il suo ruolo. I codici restano validi finché non chiudi la partita o ne generi una nuova.</p>
+      </div>
+
+      <div class="gsec">
+        <span class="glabel">Prova un codice</span>
+        <div style="display:flex;gap:10px;">
+          <input id="testci" class="cinput" type="text" maxlength="6" placeholder="· · · ·" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" style="flex:1;margin-bottom:0;color:var(--ink);background:var(--parch2);border-color:var(--border);">
+          <button class="bink" id="btnTest" style="width:auto;padding:14px 20px;letter-spacing:3px;">Entra</button>
+        </div>
+        <div id="testerr" class="gerr"></div>
+      </div>
+
+      <div class="gsec">
+        <span class="glabel">Gestione</span>
+        <button class="bline" id="btnClose">Chiudi la partita attiva</button>
+        <button class="bline" id="btnClean">Elimina i codici delle partite chiuse</button>
+        <div id="mgmtMsg" class="gerr"></div>
+      </div>
+    </div>
+
+    <button class="bback" id="btnBack">&#8592; Torna alla home</button>
+  </div>
+</div>
+
+<!-- SCHEDA GIOCATORE -->
+<div id="p-player" class="page">
+  <div id="card-track">
+    <div class="pcard" id="pc-image">
+      <img id="role-img" src="" alt="Scheda del ruolo">
+      <div class="zhint">Pizzica per ingrandire · scorri a sinistra per continuare</div>
+    </div>
+    <div class="pcard">
+      <div class="card-bg">
+        <div class="sectitle">Chi sei</div>
+        <div class="whoami">
+          <div class="pname" id="pName"></div>
+          <div class="pdesc" id="pDesc"></div>
+          <div class="rtagin" id="pRole"></div>
+          <div class="toklabel">RISORSE DI PARTENZA</div>
+          <div class="dotrow" id="pTok"></div>
+        </div>
+        <div id="rp1" class="obpage"></div>
+        <div id="rp2" class="obpage"></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="card-bg">
+        <div class="sectitle">Obiettivi &amp; Guida</div>
+        <div id="op1" class="obpage"></div>
+        <div class="divorn">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+        <div id="op2" class="obpage"></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="card-bg">
+        <div class="sectitle">Regole Generali</div>
+        <div class="rblock">
+          <div class="rtitle">Come si vince</div>
+          <div class="rtext">Conta il tuo punteggio finale al Castello Sforzesco.</div>
+          <div class="rformula">Monete + Piacere rimasti &minus; Nei = punteggio</div>
+          <div class="rtext">Vince il <strong>ruolo</strong> con la media pi&ugrave; alta &mdash; non il singolo. Conviene aiutare chi ha il tuo stesso ruolo.</div>
+        </div>
+        <div class="rblock">
+          <div class="rtitle">Gli scambi</div>
+          <div class="rtext">Puoi scambiare qualsiasi carta con chiunque, quando vuoi, al prezzo che vuoi.<br><br><strong>Spostamenti:</strong> deve esserci almeno un testimone casuale vicino.<br><br><strong>Narrazione:</strong> puoi farlo nell&rsquo;ombra &mdash; ma se qualcuno ti vede, sa qualcosa su di te.</div>
+        </div>
+        <div class="rblock">
+          <div class="rtitle">Accuse e Nei</div>
+          <div class="rtext">Solo <strong>Moralista</strong> e <strong>Cicisbeo</strong> possono accusare &mdash; massimo 2 accuse a testa per tutto il tour.<br><br>1.&nbsp; Dichiari persona e ruolo ad alta voce<br>2.&nbsp; La guida ti consegna un adesivo nero<br>3.&nbsp; Applichi il neo sul viso dell&rsquo;accusato</div>
+          <div class="rwarn">&#10003; Ruolo corretto &rarr; +2 Monete per ogni neo dell&rsquo;accusato<br>&#10007; Ruolo sbagliato &rarr; 0, accusa sprecata</div>
+        </div>
+        <div class="rblock">
+          <div class="rtitle">Il Neo della Vergogna</div>
+          <div class="rtext">Adesivo nero sul viso. Resta per tutto il tour. Vale <strong>&minus;1 punto</strong>. Non blocca nessuna azione.</div>
+        </div>
+        <div class="rblock">
+          <div class="rtitle">Al Castello Sforzesco</div>
+          <div class="rtext">Tutti mostrano le carte rimaste. Si verificano le accuse. Si calcola il punteggio. La guida legge le accuse non consegnate.</div>
+        </div>
+        <button class="bhome" id="btnHome">&#8592; HOME PAGE</button>
+      </div>
+    </div>
+  </div>
+  <div id="card-dots"></div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, update, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+/* ───────── FIREBASE ───────── */
+const app = initializeApp({
+  apiKey: "AIzaSyAjhTTnqf3L4LLbD5HGVts37SNBkrVQewE",
+  authDomain: "degrado-milano.firebaseapp.com",
+  databaseURL: "https://degrado-milano-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "degrado-milano"
+});
+const db = getDatabase(app);
+const auth = getAuth(app);
+
+/* Struttura del database:
+   stato/partitaAttiva        → id della partita in corso (o null)
+   partite/{id}               → { creata, giocatori, chiusa? }
+   codici/{CODICE}            → { ruolo, pers:{n,d}, partita, idx }
+   Un codice è valido solo se codici/{CODICE}.partita === stato/partitaAttiva. */
+
+/* ───────── DATI DI GIOCO ───────── */
+const ROLE_IMAGES = { NOB:"img/nob.jpg", VIZ:"img/viz.jpg", MOR:"img/mor.jpg", CIC:"img/cic.jpg" };
+
+const ROLES = {
+  NOB:{name:'NOBILE',color:'#A07010',pip:'pnob',
+    dot:[{n:2,l:'Monete'}],
+    rp1:{h:'Il Nobile',l:'IL TUO RUOLO',t:'Sei il volto rispettabile della corte. La tua reputazione è il tuo bene più prezioso — e la tua arma più affilata.<br><br>Non hai token di partenza oltre le Monete. Il tuo canale esclusivo è la <strong>Dichiarazione di Virtù</strong>: mostri la carta alla guida davanti a tutti, declami nome e grado nobiliare in maniera plateale e guadagni 1 Moneta.'},
+    rp2:{h:'Come ti muovi',l:'IL TUO RUOLO',t:'Partecipa ai <strong>Circoli di Tabacco</strong> con altri giocatori per guadagnare Monete in modo rispettabile.<br><br>Puoi fare <strong>Piacere Condiviso</strong> con chiunque — ma fallo con discrezione.<br><br><strong>Attenzione:</strong> se dichiari Virtù mentre hai Piacere in tasca e qualcuno ti accusa, ricevi un neo.'},
+    op1:{h:'Il tuo obiettivo',l:'NOBILE',t:'Mantieni la reputazione immacolata. Guadagna attraverso la Virtù e i Circoli rispettabili — senza mai sporcarti le mani con il vizio.',n:'Ricorda: vince il ruolo con la media più alta. Aiuta gli altri Nobili ad accumulare punti.'},
+    op2:{h:'Come giocarti bene',l:'NOBILE · GUIDA',t:'Osserva chi si comporta in modo sospetto — anche se non puoi accusare, puoi suggerire al Moralista chi tenere d’occhio, in cambio di protezione.<br><br>Usa il Tabacco come moneta nera per costruire alleanze.',n:'Non rivelare mai il tuo ruolo, nemmeno agli alleati.'}
+  },
+  VIZ:{name:'VIZIOSO',color:'#8B1A1A',pip:'pviz',
+    dot:[{n:3,l:'Piacere'},{n:1,l:'Tabacco'}],
+    rp1:{h:'Il Vizioso',l:'IL TUO RUOLO',t:'Hai tutto il Piacere del mondo ma nessun soldo. Devi convertire i token in Monete senza farti notare dal Moralista o dal Cicisbeo.<br><br>Da solo: <strong>2 Piacere → 1 Moneta</strong>, oppure <strong>1 Piacere + 1 Tabacco → 1 Moneta</strong>.<br><br>Con un altro: <strong>Piacere Condiviso</strong> — guadagnate entrambi 1 Moneta, ma siete più visibili.'},
+    rp2:{h:'Come ti muovi',l:'IL TUO RUOLO',t:'Sei il <strong>bersaglio principale</strong> del Moralista e del Cicisbeo. Ogni azione ti espone — scegli bene quando agire.<br><br>Durante la <strong>narrazione della guida</strong> è il momento migliore per convertire: meno occhi su di te.<br><br>Non puoi accusare nessuno. La tua unica difesa è l’invisibilità.'},
+    op1:{h:'Il tuo obiettivo',l:'VIZIOSO',t:'Converti tutto il Piacere in Monete prima che il tour finisca. Fallo nell’ombra, velocemente, senza farti accusare.',n:'Ogni Piacere non convertito conta nel punteggio finale — ma un neo può azzerare tutto.'},
+    op2:{h:'Come giocarti bene',l:'VIZIOSO · GUIDA',t:'Trova un alleato — un altro Vizioso o un Cicisbeo — con cui fare Piacere Condiviso in sicurezza.<br><br>Usa il Tabacco per comprare silenzio: offri 1 Tabacco a chi ti ha visto agire.',n:'Non fidarti mai di chi si offre di aiutarti troppo facilmente — potrebbe essere il Cicisbeo.'}
+  },
+  MOR:{name:'MORALISTA',color:'#444',pip:'pmor',
+    dot:[{n:1,l:'Monete'},{n:2,l:'Tabacco'}],
+    rp1:{h:'Il Moralista',l:'IL TUO RUOLO',t:'Sei il censore della corte. Puoi accusare — ma solo <strong>2 volte</strong> in tutto il tour. Ogni accusa deve essere precisa: dichiari nome e ruolo ad alta voce.<br><br>Se indovini → <strong>+2 Monete per ogni neo</strong> che aveva l’accusato.<br>Se sbagli → 0 guadagno, accusa sprecata.'},
+    rp2:{h:'Come ti muovi',l:'IL TUO RUOLO',t:'<strong>Non sei corruttibile.</strong> Se qualcuno prova a offrirti qualcosa per evitare un’accusa, lo accusi immediatamente.<br><br>Puoi fare Piacere Condiviso solo col <strong>Cicisbeo</strong>.<br><br>Osserva tutto: chi scambia con chi, chi si avvicina al sacchetto, chi evita gli occhi.'},
+    op1:{h:'Il tuo obiettivo',l:'MORALISTA',t:'Usa le 2 accuse nel momento giusto — quando sei sicuro e quando l’accusato ha già accumulato nei. Un’accusa su un giocatore con 2 nei vale 4 Monete.',n:'Non accusare mai per fretta. Aspetta. La certezza vale più della velocità.'},
+    op2:{h:'Come giocarti bene',l:'MORALISTA · GUIDA',t:'Lascia che i Viziosi agiscano — più agiscono più si espongono.<br><br>Partecipa ai Circoli di Tabacco: ti dà informazioni su chi ha token.',n:'La tua reputazione di incorruttibile è la tua forza — usala per spaventare, non solo per accusare.'}
+  },
+  CIC:{name:'CICISBEO',color:'#1A3A5C',pip:'pcic',
+    dot:[{n:1,l:'Monete'},{n:1,l:'Piacere'},{n:1,l:'Tabacco'}],
+    rp1:{h:'Il Cicisbeo',l:'IL TUO RUOLO',t:'Sei il fulcro della corte. Puoi fare quasi tutto — ma con una regola ferrea: <strong>non proponi mai tu per primo.</strong> Aspetti sempre che qualcuno venga da te.<br><br>Puoi accusare (max 2 volte) — ma solo chi ha già interagito con te durante il tour.'},
+    rp2:{h:'Come ti muovi',l:'IL TUO RUOLO',t:'<strong>Vulnerabilità:</strong> se qualcuno ti offre 1 Tabacco prima che tu accusi, sei obbligato a rinunciare a quell’accusa.<br><br>Ogni persona che viene da te è un’informazione. Più interazioni hai, più bersagli per le accuse.'},
+    op1:{h:'Il tuo obiettivo',l:'CICISBEO',t:'Lascia che la corte venga da te. Accumula interazioni, raccogli informazioni, poi usa le 2 accuse con precisione su chi hai già visto in azione.',n:'Puoi accusare solo chi ha interagito con te. Ogni interazione è un potenziale bersaglio futuro.'},
+    op2:{h:'Come giocarti bene',l:'CICISBEO · GUIDA',t:'Posizionati sempre al centro del gruppo. Sembri disponibile, curioso, innocuo.<br><br>Non fare mai la prima mossa — anche quando vorresti proporre uno scambio. Aspetta.',n:'Sei l’unico che può essere corrotto. Sfruttalo: fai capire che sei corruttibile per attirare chi ha qualcosa da nascondere.'}
+  }
+};
+
+const PERS = [
+  {n:'Don Ferrante il Malinconico',d:'Porta sempre un fazzoletto profumato — per il naso, dice.'},
+  {n:'Donna Isotta dalla Testa Alta',d:'Non si abbassa mai a raccogliere nulla. Nemmeno le opportunità.'},
+  {n:'Il Marchese Puzzolino',d:'Profumo di rosa e segreti. Soprattutto segreti.'},
+  {n:'Contessa Beltramina',d:'Ride sempre un attimo prima che succeda qualcosa di imbarazzante.'},
+  {n:'Ser Giacomo il Prudente',d:'Non parla mai per primo. Ascolta tutto. Dimentica niente.'},
+  {n:'La Vedova Cleofe',d:'Ha già perso tre mariti. Il quarto è ottimista.'},
+  {n:'Don Baldassarre il Profumato',d:'Indossa seta anche quando va al mercato.'},
+  {n:'Donna Fiammetta',d:'Gli occhi sempre aperti, la bocca sempre chiusa.'},
+  {n:'Il Cavalier Tremante',d:'Trema non per paura — per eccesso di passione, dice.'},
+  {n:'Suor Margherita in Abito Laico',d:'Ha lasciato il convento per un malinteso.'},
+  {n:'Don Pirrone il Breve',d:'Basso di statura, lungo di memoria.'},
+  {n:'La Baronessa Senza Cappello',d:'Ha perso il cappello in circostanze che preferisce non chiarire.'},
+  {n:'Don Amedeo il Trafelato',d:'Sempre di corsa, sempre in ritardo, sempre sudato.'},
+  {n:'Donna Porzia la Sospettosa',d:'Non si fida di nessuno. Probabilmente ha ragione.'},
+  {n:'Il Conte Spennacchiato',d:'Ha perso il titolo, i soldi e i capelli. Ha tenuto il carattere.'},
+  {n:'Ser Taddeo il Confuso',d:'Non ricorda mai dove ha messo il cappello — o i token.'},
+  {n:'Donna Enrichetta dei Profumi',d:'Odora sempre di qualcosa di diverso. Mai di onestà.'},
+  {n:'Il Barone Sottovoce',d:'Parla solo sottovoce. Motivo ignoto.'},
+  {n:'Donna Clotilde la Vivace',d:'Ha già tre piani in testa prima che tu finisca la frase.'},
+  {n:'Don Maurizio senza Motivo',d:'Agisce sempre senza ragione apparente. O forse la ragione è proprio questa.'},
+  {n:'Il Visconte dell’Ultima Ora',d:'Arriva sempre tardi ma pretende di sapere tutto.'},
+  {n:'Donna Serafina la Prudente',d:'Non decide mai di impulso. Ha anche un piano per fare colazione.'},
+  {n:'Ser Ortensio il Misterioso',d:'Nessuno sa da dove viene. Lui men che meno.'},
+  {n:'La Marchesa di Nessun Posto',d:'Il titolo è inventato. Il portamento no.'},
+  {n:'Don Fulgenzio il Distratto',d:'Ascolta tutto con l’aria di non ascoltare niente.'},
+  {n:'Donna Letizia la Teatrale',d:'Ogni frase è una recita. Ogni recita è vera.'},
+  {n:'Il Cavalier Fortunato',d:'Ha sempre la carta giusta al momento giusto. Coincidenza?'},
+  {n:'Donna Agnese la Puntuale',d:'L’unica della corte ad arrivare in orario. Per questo è sospettissima.'},
+  {n:'Don Gregorio il Fumoso',d:'Porta sempre con sé del tabacco. Forse più di quanto ammetta.'},
+  {n:'Il Priore Senza Pace',d:'Prega molto. Soprattutto che nessuno guardi nelle sue tasche.'}
+];
+
+const MIN_P = 20, MAX_P = 30;
+const NET_ERR = 'Connessione assente o lenta. Controlla la rete e riprova.';
+
+/* ───────── UTILITÀ ───────── */
+const $ = id => document.getElementById(id);
+function goTo(id){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  $(id).classList.add('on');
+  window.scrollTo(0,0);
+}
+function shuffle(a){
+  const b = a.slice();
+  for (let i=b.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]]; }
+  return b;
+}
+function mkCode(){
+  const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let s='';
+  for (let i=0;i<4;i++) s+=c[Math.floor(Math.random()*c.length)];
+  return s;
+}
+function withTimeout(p, ms=10000){
+  return Promise.race([p, new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')), ms))]);
+}
+function normCode(v){ return v.trim().toUpperCase().replace(/\s+/g,''); }
+
+/* ───────── LOGIN GIOCATORE ───────── */
+async function lookupCode(code){
+  const [stSnap, cSnap] = await withTimeout(Promise.all([
+    get(ref(db,'stato/partitaAttiva')),
+    get(ref(db,'codici/'+code))
+  ]));
+  const attiva = stSnap.val();
+  const d = cSnap.val();
+  if (!d || !attiva || d.partita !== attiva || !ROLES[d.ruolo]) return null;
+  return d;
+}
+
+async function enterWithCode(inputId, errId){
+  const code = normCode($(inputId).value);
+  const e = $(errId);
+  if (!code){ e.textContent='Inserisci il codice ricevuto.'; return; }
+  e.textContent='Verifico…';
+  let d;
+  try { d = await lookupCode(code); }
+  catch(err){ console.warn(err); e.textContent=NET_ERR; return; }
+  if (!d){ e.textContent='Codice non riconosciuto o partita chiusa. Riprova.'; return; }
+  e.textContent='';
+  showPlayer(d);
+}
+
+$('btnEntra').addEventListener('click', ()=>enterWithCode('ci','berr'));
+$('ci').addEventListener('keydown', e=>{ if(e.key==='Enter') $('btnEntra').click(); });
+$('btnTest').addEventListener('click', ()=>enterWithCode('testci','testerr'));
+$('testci').addEventListener('keydown', e=>{ if(e.key==='Enter') $('btnTest').click(); });
+
+/* ───────── SCHEDA GIOCATORE ───────── */
+function obBlock(o, color){
+  return '<div class="obh">'+o.h+'</div><div class="obl" style="color:'+color+'">'+o.l+'</div><div class="obt">'+o.t+'</div>'+(o.n?'<div class="obn">'+o.n+'</div>':'');
+}
+function showPlayer(d){
+  const R = ROLES[d.ruolo];
+  $('role-img').src = ROLE_IMAGES[d.ruolo];
+  const pers = d.pers || {};
+  $('pName').textContent = pers.n || '';
+  $('pDesc').textContent = pers.d || '';
+  $('pRole').textContent = R.name;
+  $('pRole').style.color = R.color; $('pRole').style.borderColor = R.color;
+  $('pTok').innerHTML = R.dot.map(t=>'<span class="tok"><span class="tokn">'+t.n+'</span>'+t.l+'</span>').join('');
+  $('rp1').innerHTML = obBlock(R.rp1, R.color);
+  $('rp2').innerHTML = obBlock(R.rp2, R.color);
+  $('op1').innerHTML = obBlock(R.op1, R.color);
+  $('op2').innerHTML = obBlock(R.op2, R.color);
+  document.querySelectorAll('.pcard').forEach(c=>c.scrollTop=0);
+  zoomReset();
+  goCard(0);
+  goTo('p-player');
+}
+$('btnHome').addEventListener('click', ()=>{ goCard(0); goTo('p-splash'); });
+
+/* Carte scorrevoli */
+const track = $('card-track');
+const cards = document.querySelectorAll('.pcard');
+const dotsEl = $('card-dots');
+cards.forEach((_,i)=>{ const s=document.createElement('span'); s.className='dot'+(i===0?' on':''); dotsEl.appendChild(s); });
+let curCard = 0;
+function goCard(n){
+  curCard = Math.max(0, Math.min(cards.length-1, n));
+  track.style.transform = 'translateX(-'+(curCard*100)+'%)';
+  dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on', i===curCard));
+}
+(function initSwipe(){
+  let sx=0, sy=0, st=0, multi=false;
+  track.addEventListener('touchstart', e=>{
+    multi = e.touches.length>1;
+    sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now();
+  }, {passive:true});
+  track.addEventListener('touchmove', e=>{ if(e.touches.length>1) multi=true; }, {passive:true});
+  track.addEventListener('touchend', e=>{
+    if (e.touches.length>0) return;
+    if (multi || zoomScale>1.05) return;
+    const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy, dt=Date.now()-st;
+    if (Math.abs(dx)>Math.abs(dy)*1.2 && Math.abs(dx)>45 && dt<600) goCard(curCard+(dx<0?1:-1));
+  }, {passive:true});
+  // Tastiera / mouse (test da computer)
+  document.addEventListener('keydown', e=>{
+    if (!$('p-player').classList.contains('on')) return;
+    if (e.key==='ArrowRight') goCard(curCard+1);
+    if (e.key==='ArrowLeft') goCard(curCard-1);
+  });
+  dotsEl.addEventListener('click', e=>{
+    const i=[...dotsEl.children].indexOf(e.target); if(i>=0) goCard(i);
+  });
+})();
+
+/* Zoom a due dita sulla scheda (trasforma direttamente l'immagine) */
+const zImg = $('role-img'), zCon = $('pc-image');
+let zoomScale=1, zx=0, zy=0;
+function zoomApply(){
+  const cw=zCon.clientWidth, ch=zCon.clientHeight;
+  const iw=zImg.offsetWidth*zoomScale, ih=zImg.offsetHeight*zoomScale;
+  // l'immagine parte dall'angolo in alto a sinistra del contenitore scrollato
+  zx = Math.min(0, Math.max(cw-iw, zx));
+  zy = Math.min(0, Math.max(Math.min(0, ch-ih), zy));
+  zImg.style.transform = 'translate('+zx+'px,'+zy+'px) scale('+zoomScale+')';
+  zCon.classList.toggle('zoomed', zoomScale>1.01);
+}
+function zoomReset(anim){
+  if (anim){ zImg.style.transition='transform .25s ease'; setTimeout(()=>zImg.style.transition='',280); }
+  // porta lo scroll attuale dentro la trasformazione, poi azzera
+  zoomScale=1; zx=0; zy=0; zImg.style.transform=''; zCon.classList.remove('zoomed');
+}
+(function initPinch(){
+  let pinch=false, drag=false, d0=0, s0=1, x0=0, y0=0, mx0=0, my0=0, dsx=0, dsy=0, lastTap=0;
+  const dist=t=>Math.hypot(t[0].clientX-t[1].clientX, t[0].clientY-t[1].clientY);
+  const mid=t=>({x:(t[0].clientX+t[1].clientX)/2, y:(t[0].clientY+t[1].clientY)/2});
+  zCon.addEventListener('touchstart', e=>{
+    const r = zCon.getBoundingClientRect();
+    if (e.touches.length===2){
+      if (zoomScale<=1.01){
+        // entra nello zoom: congela lo scroll verticale dentro la traslazione
+        zy = -zCon.scrollTop; zCon.scrollTop = 0; zx = 0;
+      }
+      pinch=true; drag=false;
+      d0=dist(e.touches); s0=zoomScale; x0=zx; y0=zy;
+      const m=mid(e.touches); mx0=m.x-r.left; my0=m.y-r.top;
+      e.preventDefault();
+    } else if (e.touches.length===1){
+      const now=Date.now();
+      if (now-lastTap<300 && zoomScale>1.01){
+        // doppio tocco: torna alla visione normale, alla stessa altezza
+        const keep = -zy/zoomScale;
+        zoomReset(false); zCon.scrollTop = keep;
+        e.preventDefault(); lastTap=0; return;
+      }
+      lastTap=now;
+      if (zoomScale>1.01){ drag=true; dsx=e.touches[0].clientX-zx; dsy=e.touches[0].clientY-zy; e.preventDefault(); }
+    }
+  }, {passive:false});
+  zCon.addEventListener('touchmove', e=>{
+    if (pinch && e.touches.length===2){
+      const r = zCon.getBoundingClientRect();
+      const s = Math.min(4, Math.max(1, s0*dist(e.touches)/d0));
+      const m = mid(e.touches), mx=m.x-r.left, my=m.y-r.top;
+      // mantiene fermo sotto le dita il punto dell'immagine pizzicato
+      zx = mx - (mx0 - x0)*(s/s0);
+      zy = my - (my0 - y0)*(s/s0);
+      zoomScale = s; zoomApply(); e.preventDefault();
+    } else if (drag && e.touches.length===1){
+      zx=e.touches[0].clientX-dsx; zy=e.touches[0].clientY-dsy; zoomApply(); e.preventDefault();
+    }
+  }, {passive:false});
+  zCon.addEventListener('touchend', e=>{
+    if (e.touches.length<2) pinch=false;
+    if (e.touches.length===0){
+      drag=false;
+      if (zoomScale<1.05){ const keep=-zy; zoomReset(false); zCon.scrollTop=keep; }
+    }
+  }, {passive:true});
+})();
+
+/* ───────── AREA GUIDA ───────── */
+let nP = MIN_P, partitaAttiva = null;
+
+function openGuide(){ goTo('p-guide'); }
+function routeFromHash(){ if (location.hash.toLowerCase()==='#guida') openGuide(); }
+window.addEventListener('hashchange', routeFromHash);
+routeFromHash();
+
+$('btnBack').addEventListener('click', ()=>{ history.replaceState(null,'',location.pathname); goTo('p-splash'); });
+
+onAuthStateChanged(auth, user=>{
+  $('gLogin').hidden = !!user;
+  $('gPanel').hidden = !user;
+  $('btnLogout').hidden = !user;
+  if (user) loadState();
+});
+
+$('btnLogin').addEventListener('click', async ()=>{
+  const e=$('gLoginErr'); e.textContent='Accesso…';
+  try {
+    await withTimeout(signInWithEmailAndPassword(auth, $('gEmail').value.trim(), $('gPass').value));
+    e.textContent=''; $('gPass').value='';
+  } catch(err){
+    console.warn(err);
+    e.textContent = (err.message==='timeout' || err.code==='auth/network-request-failed') ? NET_ERR : 'Email o password errate.';
+  }
+});
+$('gPass').addEventListener('keydown', e=>{ if(e.key==='Enter') $('btnLogin').click(); });
+$('btnLogout').addEventListener('click', ()=>signOut(auth));
+
+function renderGrid(list){
+  const grid=$('cgrid'); grid.innerHTML='';
+  list.sort((a,b)=>(a.idx||0)-(b.idx||0)).forEach(({code, ruolo})=>{
+    const R=ROLES[ruolo]; if(!R) return;
+    const t=document.createElement('div'); t.className='ctile';
+    t.innerHTML='<span class="ccode"></span><span class="pip '+R.pip+'">'+R.name.slice(0,3)+'</span>';
+    t.querySelector('.ccode').textContent=code;
+    grid.appendChild(t);
+  });
+  $('codeList').hidden = list.length===0;
+}
+
+async function loadState(){
+  const st=$('gState'); st.textContent='Caricamento…';
+  try {
+    partitaAttiva = (await withTimeout(get(ref(db,'stato/partitaAttiva')))).val();
+    if (!partitaAttiva){ st.textContent='Nessuna partita attiva. Genera i codici per iniziarne una.'; renderGrid([]); return; }
+    const snap = await withTimeout(get(query(ref(db,'codici'), orderByChild('partita'), equalTo(partitaAttiva))));
+    const list=[]; snap.forEach(c=>{ list.push({code:c.key, ruolo:c.val().ruolo, idx:c.val().idx}); });
+    st.innerHTML='<strong>Partita attiva</strong> · '+list.length+' codici validi';
+    renderGrid(list);
+  } catch(err){
+    console.warn(err);
+    st.textContent = String(err.message||'').includes('ermission') ? 'Questo account non è autorizzato come guida.' : NET_ERR;
+  }
+}
+
+$('btnMeno').addEventListener('click', ()=>{ nP=Math.max(MIN_P,nP-1); $('nval').textContent=nP; });
+$('btnPiu').addEventListener('click', ()=>{ nP=Math.min(MAX_P,nP+1); $('nval').textContent=nP; });
+
+$('btnGen').addEventListener('click', async ()=>{
+  const e=$('genErr');
+  if (partitaAttiva && !confirm('C’è già una partita attiva: i suoi codici smetteranno di funzionare. Continuare?')) return;
+  $('btnGen').disabled=true; e.textContent='Genero e salvo…';
+  // Distribuzione: base = n/4 per ruolo, i resti vanno a VIZ, NOB, CIC nell'ordine
+  const base=Math.floor(nP/4), extra=nP%4;
+  const counts={NOB:base,VIZ:base,MOR:base,CIC:base};
+  ['VIZ','NOB','CIC'].slice(0,extra).forEach(r=>counts[r]++);
+  let rk=[]; Object.keys(counts).forEach(r=>{ for(let i=0;i<counts[r];i++) rk.push(r); });
+  rk=shuffle(rk);
+  let pl=shuffle(PERS); while (pl.length<nP) pl=pl.concat(shuffle(PERS));
+  const id = Date.now().toString(36);
+  const updates = {}, list = [], used = new Set();
+  for (let i=0;i<nP;i++){
+    let code; do { code=mkCode(); } while (used.has(code)); used.add(code);
+    updates['codici/'+code] = { ruolo:rk[i], pers:pl[i], partita:id, idx:i+1 };
+    list.push({code, ruolo:rk[i], idx:i+1});
+  }
+  updates['partite/'+id] = { creata: Date.now(), giocatori: nP };
+  if (partitaAttiva) updates['partite/'+partitaAttiva+'/chiusa'] = Date.now();
+  updates['stato/partitaAttiva'] = id;
+  try {
+    await withTimeout(update(ref(db), updates), 15000);
+    partitaAttiva = id;
+    e.textContent='';
+    $('gState').innerHTML='<strong>Partita attiva</strong> · '+nP+' codici validi';
+    renderGrid(list);
+  } catch(err){
+    console.warn(err);
+    e.textContent = String(err.message||'').includes('ermission') ? 'Questo account non è autorizzato a generare codici.' : NET_ERR+' I codici NON sono stati salvati.';
+  } finally { $('btnGen').disabled=false; }
+});
+
+$('btnClose').addEventListener('click', async ()=>{
+  const m=$('mgmtMsg');
+  if (!partitaAttiva){ m.textContent='Non c’è nessuna partita attiva.'; return; }
+  if (!confirm('Chiudere la partita? Tutti i suoi codici smetteranno di funzionare.')) return;
+  m.textContent='Chiudo…';
+  try {
+    await withTimeout(update(ref(db), { ['partite/'+partitaAttiva+'/chiusa']: Date.now(), 'stato/partitaAttiva': null }));
+    m.textContent='Partita chiusa.'; partitaAttiva=null; loadState();
+  } catch(err){ console.warn(err); m.textContent=NET_ERR; }
+});
+
+$('btnClean').addEventListener('click', async ()=>{
+  const m=$('mgmtMsg');
+  if (!confirm('Eliminare dal database tutti i codici che non appartengono alla partita attiva?')) return;
+  m.textContent='Elimino…';
+  try {
+    const snap = await withTimeout(get(ref(db,'codici')), 20000);
+    const del = {}; let n=0;
+    snap.forEach(c=>{ if (!partitaAttiva || c.val().partita!==partitaAttiva){ del['codici/'+c.key]=null; n++; } });
+    if (n) await withTimeout(update(ref(db), del), 20000);
+    m.textContent = n ? ('Eliminati '+n+' codici vecchi.') : 'Nessun codice vecchio da eliminare.';
+  } catch(err){ console.warn(err); m.textContent=NET_ERR; }
+});
+</script>
+</body>
+</html>

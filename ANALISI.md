@@ -6,6 +6,38 @@ Documento di passaggio: contiene tutto quello che serve a un'altra persona o a u
 - **Versione precedente:** repo GitHub `fox3001/Vizi-Milano-`. Il file `vizi_v57_firebase_ready.html` è stato cancellato dal repo, ma resta recuperabile dalla cronologia (commit `7676fd1`). Usava un altro progetto Firebase (`vizi-milano`).
 - **Analisi fatta il:** 18 ottobre 2026, leggendo il sorgente pubblicato sul sito. Ho provato il login con un codice esistente e guardato le quattro schede. Non ho generato codici né scritto sul database.
 
+## ✅ Stato delle correzioni (aggiornato al 18/10/2026)
+
+Le sezioni 2–5 descrivono la versione **originale**, che resta salvata in `archivio/index-originale.html`. Nella versione attuale (`public/index.html`):
+
+| Bug | Stato | Come è stato risolto |
+|---|---|---|
+| 1. Database leggibile | ✅ nel codice · ⚠️ va pubblicato | `database.rules.json`: l'elenco si legge solo dopo il login della guida, il singolo codice è leggibile da tutti. Va inserita l'email della guida e poi lanciato `firebase deploy` (vedi README) |
+| 2. Zoom rotto | ✅ | Lo zoom trasforma direttamente l'immagine e resta fermo sotto le dita. Doppio tocco per tornare normale. La scheda è a larghezza piena e si scorre in verticale |
+| 3. Immagini pesanti | ✅ | Schede ritagliate dello spazio vuoto e salvate in JPG da 1080 px (210–260 KB invece di 5–6 MB). Spillo e damascato estratti dall'HTML in `public/img/`. `index.html` passa da 2,2 MB a circa 40 KB |
+| 4. Codici eterni | ✅ | Ogni generazione crea una partita (`stato/partitaAttiva`, `partite/{id}`). Un codice vale solo se appartiene alla partita attiva. Ci sono i pulsanti "Chiudi la partita" ed "Elimina i codici delle partite chiuse" |
+| 5. Area guida aperta | ✅ | Tolto il link dalla home. L'area si apre su `/#guida` e richiede il login Firebase (email e password). Eliminata la parola d'ordine nel codice |
+| 6. CSS vagante | ✅ | Rimosso |
+| 7. 30° giocatore | ✅ | Aggiunto "Il Priore Senza Pace". In più, se mancano personaggi, la lista viene riusata |
+| 8. Personaggio e risorse | ✅ | Nuova pagina "Chi sei": personaggio, ruolo, risorse di partenza e testo completo del ruolo (compensa i testi tagliati nelle PNG). Il personaggio viene salvato su Firebase |
+| 9. Codice morto | ✅ | CSS ripulito dai doppioni, eliminata la gestione delle vecchie tab |
+| 10. Altro | ✅ | Salvataggio in un solo `update()` atomico. Messaggi d'errore in caso di rete assente (timeout di 10 s). La guida, ricaricando la pagina, ritrova i codici della partita attiva |
+| 11. Backup online | ✅ nel codice · ⚠️ va pubblicato | `firebase.json` ora pubblica solo `public/`. Backup e doppioni sono spariti dal sito al primo `firebase deploy` |
+
+**Non risolti, perché servono decisioni o i file grafici originali:**
+- sezione 6, testi delle schede PNG: vanno corretti nei PSD (`D:\Documenti\Dramatrà\Gioco\scheda *.psd`), esportati in JPG e caricati in `public/img/` con lo stesso nome;
+- sezione 7, regolamento: sono decisioni di design, da prendere prima di toccare testi e schede.
+
+Ho provato la nuova versione in un browser con schermo da telefono, simulando Firebase. Hanno funzionato:
+- login giocatore e rifiuto dei codici vecchi;
+- login guida e generazione di 30 codici (8 NOB, 8 VIZ, 7 MOR, 7 CIC, 30 personaggi diversi);
+- pulizia dei codici vecchi;
+- zoom a due dita e doppio tocco;
+- scorrimento tra le quattro pagine;
+- messaggio in caso di rete assente.
+
+Non ho ancora provato con il Firebase vero.
+
 ---
 
 ## 1. Cos'è

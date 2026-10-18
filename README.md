@@ -2,22 +2,75 @@
 
 Web app di supporto a un gioco dal vivo a ruoli segreti (Nobile, Vizioso, Moralista, Cicisbeo) per un tour a piedi di 20–30 persone.
 
-- **Online:** https://degrado-milano.web.app
+- **Sito:** https://degrado-milano.web.app
+- **Area guida:** https://degrado-milano.web.app/#guida (non c'è più il link in home)
 - **Hosting e database:** Firebase, progetto `degrado-milano`
 
-## File
-| File | Cosa contiene |
+## Cartelle
+| Percorso | Cosa contiene |
 |---|---|
-| `index.html` | L'intera app: home con login, area della guida, schede del giocatore |
-| `nob.png`, `viz.png`, `mor.png`, `cic.png` | Schede dei quattro ruoli |
-| `404.html` | Pagina 404 di Firebase |
-| `firebase.json`, `.firebaserc` | Configurazione per la pubblicazione su Firebase |
-| `backup/` | Versioni precedenti di `index.html` (oggi pubblicate anche online, vedi ANALISI.md) |
-| `ANALISI.md` | **Analisi completa: bug, problemi delle schede e del regolamento, ordine di lavoro** |
+| `public/` | **Solo questa cartella viene pubblicata sul sito** |
+| `public/index.html` | L'app |
+| `public/img/` | Tutte le immagini (vedi sotto) |
+| `firebase.json` | Configurazione di pubblicazione |
+| `database.rules.json` | Regole di sicurezza del database |
+| `.github/workflows/deploy.yml` | Pubblicazione automatica a ogni modifica |
+| `archivio/` | Versione originale (prima delle correzioni), schede PNG originali, vecchi backup. **Non viene pubblicata** |
+| `ANALISI.md` | Analisi completa: bug, problemi delle schede e del regolamento |
 
-Copia fedele di quello che è pubblicato il 18/10/2026, verificata con l'hash SHA-256.
+## Cambiare un'immagine
+Tutte le immagini sono in `public/img/` e hanno nomi fissi:
 
-## Pubblicare
+| File | Cosa è |
+|---|---|
+| `nob.jpg` | Scheda del Nobile |
+| `viz.jpg` | Scheda del Vizioso |
+| `mor.jpg` | Scheda del Moralista |
+| `cic.jpg` | Scheda del Cicisbeo |
+| `spillo.png` | Personaggio della home (PNG con sfondo trasparente) |
+| `damask.jpg` | Motivo damascato dello sfondo, ripetuto a piastrelle |
+
+Per sostituirne una:
+1. su GitHub apri `public/img/`, clicca sul file e poi su **Download**;
+2. modificala e salvala **con lo stesso nome e lo stesso formato**;
+3. torna in `public/img/` e scegli **Add file → Upload files**, trascina il file e conferma con **Commit changes**. GitHub sostituisce quello vecchio.
+
+Le dimensioni non devono essere identiche: la scheda si adatta sempre alla larghezza del telefono. Conviene però restare intorno ai **1080 px di larghezza** e sotto **500 KB**. Le schede vanno lette con la rete mobile.
+
+Dopo il caricamento il sito si aggiorna da solo in 1–2 minuti, se hai attivato la pubblicazione automatica (vedi sotto). I telefoni vedono subito la nuova versione, perché le immagini non vengono tenute in cache.
+
+## Prima configurazione (una volta sola)
+
+### 1. Account della guida
+1. Firebase Console → progetto `degrado-milano` → **Authentication** → *Sign-in method* → attiva **Email/Password**.
+2. *Users* → **Add user**: inserisci l'email e la password della guida.
+3. Apri `database.rules.json` e sostituisci **tutte e 6** le occorrenze di `EMAIL_DELLA_GUIDA@esempio.it` con quell'email.
+
+### 2. Pubblicare regole e sito
+Dal PC, nella cartella del repo:
 ```
-firebase deploy --only hosting
+firebase deploy
 ```
+Questo comando pubblica sia il sito sia le regole del database. Da quel momento:
+- l'elenco dei codici non è più leggibile da fuori;
+- solo la guida, dopo il login, può generare codici;
+- i 610 codici vecchi non funzionano più. La guida li può cancellare con "Elimina i codici delle partite chiuse".
+
+### 3. Pubblicazione automatica da GitHub (facoltativa, ma serve per cambiare le immagini solo da GitHub)
+Dal PC, nella cartella del repo:
+```
+firebase init hosting:github
+```
+Rispondi `fox3001/Degrado_Milano-` quando chiede il repository. Il comando crea da solo il segreto `FIREBASE_SERVICE_ACCOUNT` su GitHub.
+
+Quando chiede di sovrascrivere i file del workflow, rispondi **no**, perché il file `deploy.yml` c'è già. Da lì in poi, ogni modifica in `public/` pubblica il sito da sola.
+
+## Come funziona una partita
+1. La guida apre `/#guida`, fa il login, sceglie il numero di giocatori e preme **Nuova partita**.
+2. Manda a ogni giocatore il suo codice di 4 caratteri.
+3. Il giocatore lo inserisce in home e vede:
+   - la scheda del ruolo (pizzica per ingrandire);
+   - chi è: personaggio, ruolo e risorse di partenza;
+   - gli obiettivi;
+   - le regole.
+4. Alla fine la guida preme **Chiudi la partita**: i codici smettono di funzionare.
