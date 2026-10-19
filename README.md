@@ -54,7 +54,7 @@ Si modificano direttamente da GitHub (icona della matita) e il sito si aggiorna 
 ### 1. Account della guida
 1. Firebase Console → progetto `degrado-milano` → **Authentication** → *Sign-in method* → attiva **Email/Password**.
 2. *Users* → **Add user**: inserisci l'email e la password della guida.
-3. Apri `database.rules.json` e sostituisci **tutte e 6** le occorrenze di `EMAIL_DELLA_GUIDA@esempio.it` con quell'email.
+3. Apri `database.rules.json` e sostituisci **tutte** le occorrenze di `EMAIL_DELLA_GUIDA@esempio.it` con quell'email.
 
 ### 2. Pubblicare regole e sito
 Dal PC, nella cartella del repo:
@@ -84,3 +84,8 @@ Quando chiede di sovrascrivere i file del workflow, rispondi **no**, perché il 
    - gli obiettivi;
    - le regole.
 4. Alla fine la guida preme **Chiudi la partita**: i codici smettono di funzionare.
+
+## Gesti segreti
+Ogni ruolo ha un gesto, uguale per tutti i giocatori di quel ruolo, che va fatto dopo ogni scambio o guadagno di Monete. A ogni **Nuova partita** l'app pesca 4 gesti diversi dall'elenco, uno per ruolo, e li scrive nella scheda di ogni giocatore. La guida vede gli abbinamenti nel suo pannello.
+
+L'elenco dei gesti si modifica nel pannello della guida, sezione **Gesti segreti**: aggiungi o togli con un tocco. Ne servono almeno 4. Il testo della regola si trova in `public/index.html`: cerca `GESTO_WHEN` e "IL GESTO SEGRETO".

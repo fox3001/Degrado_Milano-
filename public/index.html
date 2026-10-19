@@ -88,6 +88,10 @@ strong{color:var(--ink);}
 .sbox.tint{background:var(--role-tint);}
 .sbox h2{font-family:var(--caps);font-weight:700;font-size:13px;letter-spacing:3px;color:var(--role);margin-bottom:8px;}
 .sbox p,.prose{font-size:17px;line-height:1.55;color:var(--ink2);}
+.gesto-box{background:var(--ink);color:var(--parch);padding:16px;border:1px solid rgba(241,223,168,.6);box-shadow:0 4px 14px rgba(0,0,0,.25);}
+.gesto-box h2{display:flex;align-items:center;gap:8px;font-family:var(--caps);font-weight:700;font-size:13px;letter-spacing:3px;color:var(--gold2);margin-bottom:8px;}
+.gesto-box .g-what{font-size:22px;line-height:1.3;font-style:italic;color:#FBF4E4;}
+.gesto-box .g-when{margin-top:10px;padding-top:10px;border-top:1px solid #4A3A22;font-size:15px;line-height:1.45;color:#CDBFA4;}
 .pers-img{width:100%;height:auto;display:block;box-shadow:0 4px 14px rgba(0,0,0,.25);}
 
 /* Chi sei */
@@ -189,6 +193,13 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
 .test-row button{width:auto;padding:0 18px;}
 .g-msg{color:var(--danger);text-align:left;}
 .g-foot{text-align:center;}
+.g-gesti-live{margin-top:12px;display:flex;flex-direction:column;gap:6px;}
+.g-gesti-live div{display:flex;gap:10px;align-items:baseline;font-size:15px;line-height:1.35;}
+.g-gesti-live b{flex-shrink:0;font-family:var(--caps);font-size:11px;letter-spacing:1px;padding:3px 6px;color:#fff;}
+.gest-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.gest-list li{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);padding:4px 4px 4px 12px;font-size:16px;}
+.gest-list li span{flex:1;}
+.gest-list button{width:40px;height:40px;color:var(--danger);font-size:20px;}
 </style>
 </head>
 <body>
@@ -242,6 +253,11 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
       <section class="pane" id="pane-scheda" role="tabpanel" aria-label="Scheda">
         <div class="scheda-in">
           <div class="motto"><small>IL TUO MOTTO</small><p id="sMotto"></p></div>
+          <div class="gesto-box" id="sGestoBox" hidden>
+            <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11.5V4a1.5 1.5 0 0 1 3 0v8"/><path d="M14 11.5V6a1.5 1.5 0 0 1 3 0v7.5"/><path d="M8 13l-1.6-1.6a1.6 1.6 0 0 0-2.3 2.3L8 18a6 6 0 0 0 4.5 2h.5a5 5 0 0 0 5-5v-1.5"/></svg>IL TUO GESTO SEGRETO</h2>
+            <p class="g-what" id="sGesto"></p>
+            <p class="g-when" id="sGestoWhen"></p>
+          </div>
           <div class="sbox"><h2>CHI SEI</h2><p id="sRp1"></p></div>
           <div class="sbox tint"><h2>COME TI MUOVI</h2><p id="sRp2"></p></div>
           <img class="pers-img" id="sImg" src="" alt="">
@@ -263,6 +279,10 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
         <div class="sec">
           <h2 class="h-sec">RISORSE DI PARTENZA</h2>
           <div class="toks" id="cToks"></div>
+          <div id="cGestoWrap" hidden style="margin-top:20px">
+            <h2 class="h-sec">IL TUO GESTO SEGRETO</h2>
+            <p class="prose" style="font-style:italic" id="cGesto"></p>
+          </div>
           <p class="hint">Ritira i token dalla guida. Non rivelare il tuo ruolo: il personaggio è il nome con cui ti presenti alla corte.</p>
         </div>
       </section>
@@ -317,6 +337,14 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
               <ol><li>Dichiari persona e ruolo ad alta voce</li><li>La guida ti dà un adesivo nero</li><li>Lo applichi sul viso dell’accusato</li></ol>
               <div class="outcome"><div class="ok"><strong>Ruolo giusto</strong><br>+2 Monete per ogni neo che l’accusato aveva al momento dell’accusa</div><div class="ko"><strong>Ruolo sbagliato</strong><br>il neo resta, ma tu non guadagni e sprechi l’accusa</div></div>
               <p style="margin-top:10px">Le accuse si verificano al Castello Sforzesco. Il <strong>Cicisbeo</strong> è corruttibile: 1 Tabacco offerto prima che accusi gli fa rinunciare a quell’accusa. Il <strong>Moralista</strong> no: chi ci prova viene accusato subito.</p>
+            </div>
+          </details>
+          <details class="acc">
+            <summary>IL GESTO SEGRETO <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7A5810" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="acc-in">
+              <p>Ogni ruolo ha un gesto, uguale per tutti i giocatori di quel ruolo e diverso a ogni partita: lo trovi nella tua scheda.</p>
+              <p style="margin-top:8px"><strong>Ogni volta che fai uno scambio o guadagni Monete</strong>, entro un minuto fai il gesto del tuo ruolo.</p>
+              <p style="margin-top:8px">È vietato fare il gesto di un altro ruolo. Osserva chi fa cosa: collegando gesti e azioni puoi scoprire i ruoli degli altri.</p>
             </div>
           </details>
           <details class="acc">
@@ -381,6 +409,7 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
     <div class="g-card">
       <div class="g-status" id="gStatus"><b><i aria-hidden="true"></i><span id="gStateTxt" style="color:inherit;font-size:inherit">CARICAMENTO…</span></b><span id="gCount"></span></div>
       <div class="g-counts" id="gCounts" hidden></div>
+      <div class="g-gesti-live" id="gGestiLive" hidden></div>
     </div>
 
     <div id="codeList" hidden>
@@ -404,6 +433,17 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
         <button class="btn-line" id="btnClose">CHIUDI PARTITA</button>
       </div>
       <div id="genErr" class="msg g-msg"></div>
+    </div>
+
+    <div>
+      <h2 class="h-sec">GESTI SEGRETI</h2>
+      <p class="hint" style="margin:0 0 10px">A ogni nuova partita l’app ne pesca 4 a caso, uno per ruolo. Ne servono almeno 4.</p>
+      <ul class="gest-list" id="gestList"></ul>
+      <div class="test-row" style="margin-top:8px">
+        <input id="gestNew" type="text" maxlength="80" placeholder="Nuovo gesto…" style="font-family:var(--body);font-weight:400;font-size:17px;letter-spacing:0;text-transform:none" aria-label="Nuovo gesto">
+        <button class="btn-ink" id="btnGestAdd">AGGIUNGI</button>
+      </div>
+      <div id="gestMsg" class="msg g-msg"></div>
     </div>
 
     <div>
@@ -517,6 +557,20 @@ const PERS = [
   {n:'Il Priore Senza Pace',d:'Prega molto. Soprattutto che nessuno guardi nelle sue tasche.'}
 ];
 
+const DEFAULT_GESTI = [
+  'Sistemarsi il vestito, come per togliere una piega',
+  'Toccarsi il lobo dell’orecchio',
+  'Schiarirsi la voce con un piccolo colpo di tosse',
+  'Farsi aria con la mano come con un ventaglio',
+  'Sistemarsi i capelli dietro l’orecchio',
+  'Incrociare le braccia e tamburellare con le dita',
+  'Lisciarsi un baffo immaginario',
+  'Guardare il cielo con un sospiro',
+  'Aggiustarsi il colletto o la collana',
+  'Battere due volte il piede a terra'
+];
+const GESTO_WHEN = 'Fallo ogni volta che fai uno scambio o guadagni Monete. Tutti i {PLURALE} hanno il tuo stesso gesto: se lo vedi fare, sai chi è dei tuoi.';
+
 const MIN_P = 20, MAX_P = 30;
 const NET_ERR = 'Connessione assente o lenta. Controlla la rete e riprova.';
 
@@ -584,6 +638,13 @@ function showPlayer(d){
   $('sMotto').textContent = '«' + R.motto + '»';
   $('sRp1').innerHTML = R.rp1;
   $('sRp2').innerHTML = R.rp2;
+  $('sGestoBox').hidden = !d.gesto;
+  $('cGestoWrap').hidden = !d.gesto;
+  if (d.gesto){
+    $('sGesto').textContent = d.gesto;
+    $('sGestoWhen').textContent = GESTO_WHEN.replace('{PLURALE}', R.plural.charAt(0)+R.plural.slice(1).toLowerCase());
+    $('cGesto').textContent = d.gesto;
+  }
   $('sImg').src = R.img;
   $('sImg').alt = 'Illustrazione del ' + R.name.toLowerCase();
 
@@ -635,7 +696,7 @@ tabs.forEach(t=>t.addEventListener('click', ()=>goCard(+t.dataset.i)));
 })();
 
 /* ───────── AREA GUIDA (indirizzo/#guida) ───────── */
-let nP = MIN_P, partitaAttiva = null, currentList = [], authUser = null, authKnown = false;
+let nP = MIN_P, partitaAttiva = null, currentList = [], authUser = null, authKnown = false, gesti = DEFAULT_GESTI.slice(), gestiPartita = null;
 
 function inGuide(){ return location.hash.toLowerCase() === '#guida'; }
 function routeGuide(){
@@ -684,13 +745,51 @@ function renderState(list){
     grid.appendChild(t);
   });
   $('codeList').hidden = !live || !currentList.length;
+  const gl = $('gGestiLive');
+  if (live && gestiPartita){
+    gl.innerHTML = ''; 
+    Object.keys(ROLES).forEach(r=>{ if(!gestiPartita[r]) return;
+      const row=document.createElement('div');
+      row.innerHTML='<b style="background:'+ROLES[r].color+'">'+r+'</b><span></span>';
+      row.querySelector('span').textContent=gestiPartita[r]; gl.appendChild(row); });
+    gl.hidden = false;
+  } else gl.hidden = true;
 }
+
+/* Gesti: elenco modificabile dalla guida (config/gesti) */
+function renderGesti(){
+  const ul=$('gestList'); ul.innerHTML='';
+  gesti.forEach((g,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML='<span></span><button aria-label="Togli questo gesto">×</button>';
+    li.querySelector('span').textContent=g;
+    li.querySelector('button').addEventListener('click', ()=>saveGesti(gesti.filter((_,j)=>j!==i)));
+    ul.appendChild(li);
+  });
+}
+async function saveGesti(next){
+  const m=$('gestMsg'); m.textContent='Salvo…';
+  try { await withTimeout(update(ref(db), {'config/gesti': next})); gesti=next; m.textContent=''; renderGesti(); }
+  catch(err){ console.warn(err); m.textContent = isPerm(err) ? 'Questo account non può modificare i gesti.' : NET_ERR; }
+}
+$('btnGestAdd').addEventListener('click', ()=>{
+  const v=$('gestNew').value.trim().replace(/\s+/g,' ');
+  if (!v) return;
+  if (gesti.some(g=>g.toLowerCase()===v.toLowerCase())){ $('gestMsg').textContent='Questo gesto c’è già.'; return; }
+  $('gestNew').value=''; saveGesti(gesti.concat(v));
+});
+$('gestNew').addEventListener('keydown', e=>{ if(e.key==='Enter') $('btnGestAdd').click(); });
 
 async function loadState(){
   $('gStateTxt').textContent='CARICAMENTO…';
   try {
+    const cfg = (await withTimeout(get(ref(db,'config/gesti')))).val();
+    if (Array.isArray(cfg)) gesti = cfg.filter(Boolean);
+    renderGesti();
     partitaAttiva = (await withTimeout(get(ref(db,'stato/partitaAttiva')))).val();
+    gestiPartita = null;
     if (!partitaAttiva){ renderState([]); return; }
+    gestiPartita = (await withTimeout(get(ref(db,'partite/'+partitaAttiva+'/gesti')))).val();
     const snap = await withTimeout(get(query(ref(db,'codici'), orderByChild('partita'), equalTo(partitaAttiva))));
     const list=[]; snap.forEach(c=>{ list.push({code:c.key, ruolo:c.val().ruolo, idx:c.val().idx}); });
     renderState(list);
@@ -713,7 +812,10 @@ $('btnPiu').addEventListener('click', ()=>{ nP=Math.min(MAX_P,nP+1); $('nval').t
 $('btnGen').addEventListener('click', async ()=>{
   const e=$('genErr');
   if (partitaAttiva && !confirm('C’è già una partita in corso: i suoi codici smetteranno di funzionare. Continuare?')) return;
+  if (gesti.length < 4){ e.textContent='Servono almeno 4 gesti: aggiungine nella sezione Gesti segreti.'; return; }
   $('btnGen').disabled=true; e.textContent='Genero e salvo…';
+  const pick = shuffle(gesti).slice(0,4);
+  const gestiNew = {}; Object.keys(ROLES).forEach((r,i)=>gestiNew[r]=pick[i]);
   // Distribuzione: n/4 per ruolo, i resti vanno a VIZ, NOB, CIC nell'ordine
   const base=Math.floor(nP/4), extra=nP%4;
   const counts={NOB:base,VIZ:base,MOR:base,CIC:base};
@@ -725,15 +827,15 @@ $('btnGen').addEventListener('click', async ()=>{
   const updates = {}, list = [], used = new Set();
   for (let i=0;i<nP;i++){
     let code; do { code=mkCode(); } while (used.has(code)); used.add(code);
-    updates['codici/'+code] = { ruolo:rk[i], pers:pl[i], partita:id, idx:i+1 };
+    updates['codici/'+code] = { ruolo:rk[i], pers:pl[i], partita:id, idx:i+1, gesto:gestiNew[rk[i]] };
     list.push({code, ruolo:rk[i], idx:i+1});
   }
-  updates['partite/'+id] = { creata: Date.now(), giocatori: nP };
+  updates['partite/'+id] = { creata: Date.now(), giocatori: nP, gesti: gestiNew };
   if (partitaAttiva) updates['partite/'+partitaAttiva+'/chiusa'] = Date.now();
   updates['stato/partitaAttiva'] = id;
   try {
     await withTimeout(update(ref(db), updates), 15000);
-    partitaAttiva = id; e.textContent=''; renderState(list);
+    partitaAttiva = id; gestiPartita = gestiNew; e.textContent=''; renderState(list);
   } catch(err){
     console.warn(err);
     e.textContent = isPerm(err) ? 'Questo account non può generare codici.' : NET_ERR+' I codici NON sono stati salvati.';
