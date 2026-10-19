@@ -1,5 +1,8 @@
 # Vizi Nascosti — Milano · Seicento
 
+> **Scopo di questo repo:** archivio completo del gioco (app, regole, analisi e idee di design) come **base per trasformarlo in un gioco di carte**.
+> Tutte le regole, le varianti e gli appunti per la versione carte sono in **[REGOLE-E-IDEE.md](REGOLE-E-IDEE.md)**.
+
 Web app di supporto a un gioco dal vivo a ruoli segreti (Nobile, Vizioso, Moralista, Cicisbeo) per un tour a piedi di 20–30 persone.
 
 - **Sito:** https://degrado-milano.web.app
@@ -17,6 +20,7 @@ Web app di supporto a un gioco dal vivo a ruoli segreti (Nobile, Vizioso, Morali
 | `.github/workflows/deploy.yml` | Pubblicazione automatica a ogni modifica |
 | `archivio/` | Versione originale (prima delle correzioni), schede PNG originali, vecchi backup. **Non viene pubblicata** |
 | `ANALISI.md` | Analisi completa: bug, problemi delle schede e del regolamento |
+| `REGOLE-E-IDEE.md` | Tutte le regole (v8.0, aggiunte, versione completa e semplificata) e le idee per il gioco di carte |
 
 ## Cambiare un'immagine
 Tutte le immagini sono in `public/img/` e hanno nomi fissi:
