@@ -24,8 +24,23 @@ Le sezioni 2–5 descrivono la versione **originale**, che resta salvata in `arc
 | 10. Altro | ✅ | Salvataggio in un solo `update()` atomico. Messaggi d'errore in caso di rete assente (timeout di 10 s). La guida, ricaricando la pagina, ritrova i codici della partita attiva |
 | 11. Backup online | ✅ nel codice · ⚠️ va pubblicato | `firebase.json` ora pubblica solo `public/`. Backup e doppioni sono spariti dal sito al primo `firebase deploy` |
 
+**Nuovo design (19/10/2026):**
+- l'app è stata ridisegnata a partire dal mockup approvato: barra in basso con 4 sezioni, colori dei ruoli presi dalle schede, testi più grandi e più contrastati, codice in 4 caselle;
+- la **scheda del ruolo non è più un'immagine unica**: ora è fatta di sfondo damascato nel colore del ruolo, motto, riquadri di testo veri e illustrazioni dei personaggi (`public/img/<ruolo>-personaggi.jpg`). Questo risolve quasi tutta la sezione 6: testi tagliati, frecce mancanti, "plaetale" e "Dané" non esistono più nell'app;
+- la pagina Regole riporta anche "Come si guadagnano Monete", presa dal regolamento PDF.
+
+**Il regolamento PDF chiarisce parte della sezione 7.** Il file è `VIZI NASCOSTI — regolamento finale.pdf` (v8.0), sul PC in `D:\Documenti\Dramatrà\Gioco`.
+- **Circoli di Tabacco:** 3–4 giocatori in cerchio, ognuno mette 1 Tabacco nel sacchetto e prende 1 Moneta.
+- **Piacere Condiviso:** ci si scambia 1 Piacere a testa, lo si mette nel sacchetto e si prende 1 Moneta ciascuno.
+- **Il sacchetto** è quello della guida, dove si depositano i token per ottenere Monete.
+- **Neo di un'accusa sbagliata:** resta sull'accusato.
+- **Guadagno dell'accusa:** si contano i nei "al momento dell'accusa".
+- **Il Cicisbeo può convertire** come il Vizioso (ora è scritto nella sua scheda).
+
+Restano aperti i punti 1 (al Vizioso conviene non convertire), 2 (la prima accusa vale 0), 5 (limite alla Dichiarazione di Virtù), 7 (valore del Tabacco a fine partita) e 8. Anche col Piacere Condiviso il punteggio non cambia: si perde 1 Piacere e si guadagna 1 Moneta.
+
 **Non risolti, perché servono decisioni o i file grafici originali:**
-- sezione 6, testi delle schede PNG: vanno corretti nei PSD (`D:\Documenti\Dramatrà\Gioco\scheda *.psd`), esportati in JPG e caricati in `public/img/` con lo stesso nome;
+- sezione 6: con il nuovo design le PNG non si usano più. Resta da decidere quale versione tenere per l'accusa del Cicisbeo (verso chiunque o solo verso chi ha interagito con lui). Il PDF dice "solo chi ha interagito", come l'app;
 - sezione 7, regolamento: sono decisioni di design, da prendere prima di toccare testi e schede.
 
 Ho provato la nuova versione in un browser con schermo da telefono, simulando Firebase. Hanno funzionato:

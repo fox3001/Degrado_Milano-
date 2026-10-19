@@ -2,245 +2,424 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#120D07">
 <title>Vizi Nascosti</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+/* ───── Colori e caratteri ───── */
 :root{
-  --parch:#F5EDD6;--parch2:#EDE0BE;--ink:#1C1208;--ink2:#3D2B0E;
-  --red:#8B1A1A;--gold:#C8960C;--gold2:#E8B84B;--blue:#1A3A5C;--border:#8B6914;
+  --night:#120D07; --ink:#1A1209; --ink2:#2E2214; --ink3:#5C4A33;
+  --parch:#F3EADA; --card:#FBF6EC; --line:#C9B48A; --line2:#DCCBA6;
+  --gold:#D4A84B; --gold2:#E6C474; --gold3:#F3DA9C; --goldtext:#7A5810;
+  --ok-bg:#E7EFE3; --ok:#23401F; --ko-bg:#F4E3E0; --ko:#5E1A13; --danger:#8C2B22;
+  --role:#6B4E9B; --role-tint:#EFE6F5;
+  --display:'Cinzel Decorative', Georgia, serif;
+  --caps:'Cinzel', Georgia, serif;
+  --body:'IM Fell English', Georgia, serif;
 }
-html,body{background:#1C1208;font-family:'IM Fell English',Georgia,serif;color:var(--ink);}
-button{cursor:pointer;font:inherit;border:none;background:none;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--night);font-family:var(--body);color:var(--ink);-webkit-tap-highlight-color:transparent;}
+button{cursor:pointer;font:inherit;color:inherit;border:none;background:none;}
 button:disabled{opacity:.5;cursor:default;}
 input{font:inherit;color:inherit;}
-@keyframes dam-scroll{from{background-position:0 0;}to{background-position:-280px -280px;}}
+strong{color:var(--ink);}
+.dam{background-image:url("img/damask.jpg");background-size:260px auto;background-repeat:repeat;}
+.caps{font-family:var(--caps);letter-spacing:3px;}
+.h-sec{font-family:var(--caps);font-weight:700;font-size:13px;letter-spacing:3px;color:var(--goldtext);margin-bottom:10px;}
 
-/* SCHERMATE */
-.page{display:none;min-height:100vh;flex-direction:column;}
+.page{display:none;min-height:100vh;min-height:100dvh;flex-direction:column;}
 .page.on{display:flex;}
 
-/* HOME */
-#p-splash{background:#0E0A04;align-items:center;justify-content:flex-end;text-align:center;padding:20px 20px 40px;position:relative;overflow:visible;}
-#p-splash::before{content:"";position:absolute;inset:0;background:url("img/damask.jpg") center/280px auto repeat;filter:grayscale(1) sepia(1) saturate(4) hue-rotate(10deg) brightness(0.55);opacity:0.13;pointer-events:none;z-index:0;animation:dam-scroll 25s linear infinite;}
-.swrap{position:relative;z-index:1;max-width:320px;width:100%;margin:0 auto;}
-.spillo{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);width:220px;margin-bottom:-28px;z-index:10;pointer-events:none;}
-.sframe{border:1px solid var(--gold);padding:0 24px 20px;width:100%;background:rgba(18,12,2,0.9);position:relative;}
-.sorn{font-family:'Cinzel',serif;font-size:9px;letter-spacing:6px;color:var(--gold2);margin-bottom:8px;}
-.stitle{font-family:'Cinzel Decorative',serif;font-size:36px;color:var(--gold2);line-height:1.1;margin-bottom:6px;text-shadow:0 0 30px rgba(200,150,12,.3);}
-.ssub{font-family:'Cinzel',serif;font-size:9px;letter-spacing:7px;color:#6A5020;margin-bottom:14px;}
-.clabel{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:#6A5020;display:block;margin-bottom:10px;}
-.cinput{width:100%;background:rgba(255,255,255,.04);border:1px solid #4A3008;padding:10px;font-family:'Cinzel',serif;font-size:18px;letter-spacing:6px;color:var(--gold2);text-align:center;text-transform:uppercase;outline:none;margin-bottom:12px;}
-.cinput:focus{border-color:var(--gold);}
-.cinput::placeholder{color:#2A1A04;letter-spacing:4px;}
-.bgold{display:block;width:100%;background:linear-gradient(135deg,#906008,#C8960C,#906008);color:#1C1208;font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;padding:14px;font-weight:700;border:1px solid #806008;}
-.berr{font-size:14px;color:#C04040;margin-top:8px;font-style:italic;min-height:18px;}
+/* ───── Bottoni ───── */
+.btn-gold{display:block;width:100%;min-height:56px;border:1px solid var(--gold3);background:linear-gradient(180deg,var(--gold2),#B98A2E);color:var(--ink);font-family:var(--caps);font-weight:700;font-size:15px;letter-spacing:3px;}
+.btn-ink{display:block;width:100%;min-height:52px;background:var(--ink);color:var(--parch);font-family:var(--caps);font-weight:700;font-size:13px;letter-spacing:2px;}
+.btn-line{display:block;width:100%;min-height:52px;background:transparent;border:1px solid var(--danger);color:var(--danger);font-family:var(--caps);font-weight:700;font-size:13px;letter-spacing:2px;}
+.btn-link{min-height:44px;padding:0 4px;color:var(--goldtext);font-family:var(--caps);font-size:12px;letter-spacing:1px;text-decoration:underline;text-underline-offset:3px;}
+.msg{font-size:15px;font-style:italic;min-height:20px;margin-top:10px;text-align:center;}
 
-/* AREA GUIDA */
+/* ───── HOME ───── */
+#p-splash{position:relative;overflow:hidden;background:var(--night);color:var(--parch);}
+#p-splash .dam{position:absolute;inset:0;opacity:.07;filter:grayscale(1) sepia(1) saturate(3) brightness(.9);}
+#p-splash .glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(212,168,75,.20),rgba(18,13,7,0) 62%);}
+.splash-in{position:relative;flex:1;width:100%;max-width:420px;margin:0 auto;padding:48px 24px 28px;display:flex;flex-direction:column;align-items:center;}
+.kicker{font-family:var(--caps);font-size:12px;letter-spacing:4px;color:var(--gold);text-align:center;}
+.spillo{width:200px;height:auto;margin-top:14px;position:relative;z-index:2;}
+.sframe{width:100%;margin-top:-22px;border:1px solid #8A6A2A;outline:1px solid rgba(212,168,75,.35);outline-offset:5px;background:rgba(18,13,7,.92);padding:34px 22px 24px;display:flex;flex-direction:column;align-items:center;gap:18px;}
+.stitle{font-family:var(--display);font-weight:700;font-size:40px;line-height:1.02;color:var(--gold2);text-align:center;letter-spacing:1px;}
+.ssub{margin-top:10px;font-style:italic;font-size:17px;color:#CDBFA4;text-align:center;}
+.code-label{font-family:var(--caps);font-size:12px;letter-spacing:3px;color:var(--gold);text-align:center;display:block;margin-bottom:10px;}
+.code-wrap{position:relative;width:100%;}
+.code-boxes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;pointer-events:none;}
+.code-box{height:60px;border:1px solid #6E5523;background:rgba(243,234,218,.04);display:flex;align-items:center;justify-content:center;font-family:var(--caps);font-weight:700;font-size:28px;color:var(--gold3);}
+.code-box.filled{border-color:var(--gold);background:rgba(243,234,218,.07);}
+.code-box.cur{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(230,196,116,.25);}
+.code-input{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px;text-transform:uppercase;caret-color:transparent;}
+.splash-note{font-size:15px;color:#B9AA8C;text-align:center;line-height:1.45;}
+.splash-foot{margin-top:auto;padding-top:24px;display:flex;align-items:center;gap:12px;}
+.splash-foot span{font-family:var(--caps);font-size:12px;letter-spacing:3px;color:#A8894A;}
+.splash-foot i{width:40px;height:1px;background:#8A6A2A;}
+#berr{color:#E89A8A;}
+
+/* ───── GIOCATORE ───── */
+#p-player{height:100vh;height:100dvh;min-height:0;overflow:hidden;background:var(--parch);}
+.p-head{flex-shrink:0;height:64px;background:var(--night);display:flex;align-items:center;gap:12px;padding:0 8px 0 16px;border-bottom:3px solid var(--role);}
+.seal-sm{width:36px;height:36px;border-radius:50%;background:var(--role);border:2px solid var(--gold2);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:17px;color:var(--parch);flex-shrink:0;}
+.p-head-txt{flex:1;min-width:0;display:flex;flex-direction:column;}
+.p-head-role{font-family:var(--caps);font-weight:700;font-size:16px;letter-spacing:2px;color:var(--parch);}
+.p-head-name{font-style:italic;font-size:14px;color:#CDBFA4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.icon-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--gold2);flex-shrink:0;}
+.p-body{flex:1;min-height:0;overflow:hidden;position:relative;}
+#card-track{display:flex;height:100%;transition:transform .35s cubic-bezier(.25,.46,.45,.94);will-change:transform;}
+.pane{flex:0 0 100%;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;}
+.tabbar{flex-shrink:0;display:flex;background:var(--parch);border-top:1px solid var(--line);padding:0 6px env(safe-area-inset-bottom,0);}
+.tab{flex:1;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-family:var(--caps);font-size:11px;letter-spacing:1px;color:var(--ink3);}
+.tab[aria-selected="true"]{color:var(--role);font-weight:700;box-shadow:inset 0 3px 0 var(--role);}
+.tab svg{width:22px;height:22px;}
+
+/* Scheda */
+#pane-scheda{background-color:var(--role);background-image:linear-gradient(color-mix(in srgb,var(--role) 55%,transparent),color-mix(in srgb,var(--role) 55%,transparent)),url("img/damask.jpg");background-size:auto,240px auto;background-blend-mode:normal,soft-light;background-attachment:local;}
+.scheda-in{position:relative;padding:18px 16px 28px;display:flex;flex-direction:column;gap:14px;max-width:560px;margin:0 auto;}
+.motto{background:rgba(18,13,7,.55);border:1px solid rgba(241,223,168,.6);padding:14px 16px;text-align:center;}
+.motto small{display:block;font-family:var(--caps);font-size:11px;letter-spacing:3px;color:#F1DFA8;margin-bottom:4px;}
+.motto p{font-style:italic;font-size:22px;line-height:1.25;color:#FBF4E4;}
+.sbox{background:var(--card);padding:16px 16px 14px;box-shadow:0 4px 14px rgba(0,0,0,.18);}
+.sbox.tint{background:var(--role-tint);}
+.sbox h2{font-family:var(--caps);font-weight:700;font-size:13px;letter-spacing:3px;color:var(--role);margin-bottom:8px;}
+.sbox p,.prose{font-size:17px;line-height:1.55;color:var(--ink2);}
+.pers-img{width:100%;height:auto;display:block;box-shadow:0 4px 14px rgba(0,0,0,.25);}
+
+/* Chi sei */
+.hero{position:relative;background:var(--role);color:#F8F1E4;padding:36px 24px 30px;text-align:center;overflow:hidden;}
+.hero .dam{position:absolute;inset:0;opacity:.12;filter:grayscale(1) brightness(1.6);mix-blend-mode:screen;}
+.hero-in{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.hero small{font-family:var(--caps);font-size:12px;letter-spacing:4px;color:#F1DFA8;}
+.seal{width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#B33A3A,#7A1717);border:3px solid var(--gold2);box-shadow:0 6px 18px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:38px;color:#F8E7B5;}
+.hero h1{font-family:var(--display);font-weight:700;font-size:26px;line-height:1.15;margin-top:4px;}
+.hero p{font-style:italic;font-size:17px;line-height:1.4;color:#EFE3CC;max-width:320px;}
+.role-pill{margin-top:6px;padding:7px 18px;border:1px solid #F1DFA8;font-family:var(--caps);font-weight:700;font-size:14px;letter-spacing:4px;background:rgba(0,0,0,.18);}
+.sec{padding:22px 22px 6px;max-width:560px;margin:0 auto;}
+.toks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+.tok{background:var(--card);border:1px solid var(--line);padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.tok.zero{background:transparent;border-style:dashed;}
+.tok svg{width:28px;height:28px;}
+.tok b{font-family:var(--display);font-size:26px;line-height:1;color:var(--ink);}
+.tok.zero b{color:#8A7A5E;}
+.tok span{font-family:var(--caps);font-size:12px;letter-spacing:1px;color:var(--ink3);}
+.tok.zero span{color:#6E5E44;}
+.hint{font-size:15px;color:var(--ink3);font-style:italic;line-height:1.5;margin-top:12px;}
+
+/* Obiettivi / Regole */
+.pane-head{padding:28px 22px 16px;border-bottom:1px solid var(--line2);max-width:560px;margin:0 auto;}
+.pane-head small{font-family:var(--caps);font-weight:700;font-size:12px;letter-spacing:3px;color:var(--role);}
+.pane-head h1{font-family:var(--display);font-weight:700;font-size:28px;color:var(--ink);margin-top:2px;}
+.pane-body{padding:20px 22px 32px;display:flex;flex-direction:column;gap:18px;max-width:560px;margin:0 auto;}
+.dark-card{background:var(--ink);color:var(--parch);padding:20px;position:relative;}
+.dark-card::before{content:"";position:absolute;top:0;left:20px;right:20px;height:3px;background:var(--role);}
+.dark-card h2{display:flex;align-items:center;gap:10px;font-family:var(--caps);font-weight:700;font-size:15px;letter-spacing:2px;color:var(--gold2);margin-bottom:10px;}
+.dark-card p{font-size:18px;line-height:1.55;}
+.dark-card strong{color:#fff;}
+.dark-card .sub{margin-top:14px;padding-top:12px;border-top:1px solid #4A3A22;font-size:16px;line-height:1.5;color:#CDBFA4;font-style:italic;}
+.steps{display:flex;flex-direction:column;gap:12px;}
+.step{display:flex;gap:12px;align-items:flex-start;}
+.step-n{flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid var(--role);color:var(--role);display:flex;align-items:center;justify-content:center;font-family:var(--caps);font-weight:700;font-size:14px;}
+.step p{font-size:17px;line-height:1.5;color:var(--ink2);}
+.tip{background:var(--card);border:1px solid var(--line);padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.tip svg{flex-shrink:0;margin-top:2px;}
+.tip p{font-style:italic;font-size:16px;line-height:1.5;color:#3D2E1A;}
+.formula{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;font-family:var(--caps);font-weight:700;font-size:15px;letter-spacing:1px;margin-bottom:12px;}
+.formula span{padding:8px 10px;border:1px solid #8A6A2A;}
+.formula em{font-style:normal;color:var(--gold2);}
+details.acc{background:var(--card);border:1px solid var(--line);}
+details.acc summary{min-height:50px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:var(--caps);font-weight:700;font-size:14px;letter-spacing:2px;color:var(--ink);list-style:none;}
+details.acc summary::-webkit-details-marker{display:none;}
+details.acc summary svg{transition:transform .2s;}
+details.acc[open] summary svg{transform:rotate(180deg);}
+details.acc .acc-in{padding:0 16px 16px;font-size:16px;line-height:1.55;color:var(--ink2);}
+details.acc ol{padding-left:20px;margin:8px 0 12px;}
+.outcome{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font-size:15px;line-height:1.35;}
+.outcome div{padding:10px;}
+.outcome .ok{background:var(--ok-bg);border:1px solid #4F7350;color:var(--ok);}
+.outcome .ko{background:var(--ko-bg);border:1px solid var(--danger);color:var(--ko);}
+.outcome strong{color:inherit;}
+
+/* ───── GUIDA ───── */
+#p-glogin{position:relative;overflow:hidden;background:var(--night);color:var(--parch);}
+#p-glogin .dam{position:absolute;inset:0;opacity:.06;filter:grayscale(1) sepia(1) saturate(3) brightness(.9);}
+.gl-in{position:relative;flex:1;width:100%;max-width:420px;margin:0 auto;padding:60px 26px 30px;display:flex;flex-direction:column;gap:28px;}
+.gl-top{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;}
+.gl-key{width:64px;height:64px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;}
+.gl-top h1{font-family:var(--display);font-weight:700;font-size:30px;color:var(--gold2);}
+.gl-top p{font-size:17px;line-height:1.5;color:#CDBFA4;max-width:290px;}
+.field{display:flex;flex-direction:column;gap:8px;}
+.field label{font-family:var(--caps);font-size:12px;letter-spacing:2px;color:var(--gold);}
+.field input{height:52px;padding:0 14px;background:rgba(243,234,218,.06);border:1px solid #8A6A2A;color:var(--parch);font-family:Georgia,serif;font-size:17px;outline:none;}
+.field input:focus{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(230,196,116,.2);}
+.back-link{margin-top:auto;align-self:center;min-height:44px;display:flex;align-items:center;gap:8px;font-family:var(--caps);font-size:13px;letter-spacing:2px;color:var(--gold2);}
+#gLoginErr{color:#E89A8A;}
+
 #p-guide{background:var(--parch);}
-.ghdr{background:var(--ink);padding:20px 24px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
-.gbadge{background:var(--red);color:var(--parch);font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;padding:4px 10px;}
-.ghtitle{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:var(--parch);flex:1;}
-.glogout{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--gold2);text-decoration:underline;}
-.gbody{flex:1;overflow-y:auto;padding:28px 24px;}
-.glabel{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--ink2);margin-bottom:12px;display:block;}
-.ginput{width:100%;background:var(--parch2);border:1px solid var(--border);padding:12px;font-size:16px;color:var(--ink);margin-bottom:12px;outline:none;}
-.gsec{margin-top:24px;border-top:1px solid var(--border);padding-top:20px;}
-.gnote{margin-top:12px;font-size:13px;color:#777;font-style:italic;line-height:1.6;}
-.gerr{font-size:13px;color:var(--red);margin-top:8px;font-style:italic;min-height:16px;}
-.gstate{background:var(--parch2);border:1px solid var(--border);padding:12px 14px;font-size:14px;line-height:1.6;margin-bottom:16px;}
-.numrow{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
-.nbtn{width:44px;height:44px;border:1px solid var(--border);background:var(--parch2);font-size:22px;color:var(--ink);display:flex;align-items:center;justify-content:center;}
-.nval{font-family:'Cinzel Decorative',serif;font-size:32px;color:var(--red);min-width:44px;text-align:center;}
-.bink{display:block;width:100%;background:var(--ink);color:var(--parch);font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;padding:14px;border:1px solid var(--ink2);}
-.bline{display:block;width:100%;background:transparent;color:var(--ink2);font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;padding:12px;border:1px solid var(--border);margin-top:10px;}
-.bback{display:block;width:100%;background:transparent;color:#999;font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;padding:12px;border:1px solid #ccc;margin-top:20px;}
-.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
-.ctile{background:var(--parch2);border:1px solid var(--border);padding:12px 14px;display:flex;align-items:center;justify-content:space-between;}
-.ccode{font-family:'Cinzel',serif;font-size:18px;letter-spacing:4px;color:var(--ink);}
-.pip{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;padding:3px 8px;border:1px solid;}
-.pnob{color:#A07010;border-color:#A07010;}.pviz{color:var(--red);border-color:var(--red);}
-.pmor{color:#555;border-color:#999;}.pcic{color:var(--blue);border-color:var(--blue);}
-
-/* SCHEDA GIOCATORE */
-#p-player{position:relative;height:100vh;height:100dvh;min-height:0;overflow:hidden;background:var(--parch);}
-#card-track{display:flex;height:100%;transition:transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94);will-change:transform;}
-.pcard{flex:0 0 100%;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;}
-.card-bg{position:relative;background:var(--parch);min-height:100%;padding:28px 20px 60px;}
-.card-bg::before{content:"";position:absolute;inset:0;background:url("img/damask.jpg") center/280px auto repeat;filter:grayscale(1) sepia(0.7) brightness(0.85);opacity:0.10;pointer-events:none;z-index:0;animation:dam-scroll 30s linear infinite;}
-.card-bg>*{position:relative;z-index:1;}
-#pc-image{background:#FFF8EE url("img/damask.jpg") center/280px auto repeat;}
-#pc-image.zoomed{overflow:hidden;touch-action:none;}
-#role-img{display:block;width:100%;height:auto;transform-origin:0 0;}
-.zhint{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--ink2);background:var(--parch);text-align:center;padding:12px 8px 44px;}
-#card-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10;}
-.dot{width:9px;height:9px;border-radius:50%;background:rgba(28,18,8,0.22);border:1px solid rgba(255,248,238,.8);transition:background 0.3s,transform 0.3s;}
-.dot.on{background:var(--ink);transform:scale(1.25);}
-
-/* CONTENUTI */
-.sectitle{font-family:'Cinzel',serif;font-size:9px;letter-spacing:6px;color:var(--border);text-align:center;margin-bottom:22px;display:flex;align-items:center;gap:10px;}
-.sectitle::before,.sectitle::after{content:'';flex:1;height:1px;background:var(--border);opacity:.35;}
-.whoami{text-align:center;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--parch2);}
-.pname{font-family:'Cinzel Decorative',serif;font-size:clamp(16px,5.5vw,22px);color:var(--ink);margin-bottom:6px;}
-.pdesc{font-style:italic;color:var(--ink2);font-size:14px;margin-bottom:14px;line-height:1.5;}
-.rtagin{font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;padding:5px 16px;border:1px solid;display:inline-block;margin-bottom:16px;}
-.toklabel{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;color:var(--border);margin-bottom:8px;}
-.dotrow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
-.tok{background:var(--parch2);border:1px solid var(--border);padding:5px 11px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;display:flex;align-items:center;gap:5px;}
-.tokn{font-size:17px;color:var(--red);font-family:'Cinzel Decorative',serif;}
-.obpage{margin-bottom:14px;padding-bottom:30px;border-bottom:1px solid var(--parch2);}
-.obpage:last-child{border-bottom:none;margin-bottom:0;}
-.obh{font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--ink);margin-bottom:3px;}
-.obl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;margin-bottom:14px;}
-.obt{font-size:15px;color:var(--ink2);line-height:1.8;margin-bottom:12px;}
-.obt strong{color:var(--ink);}
-.obn{border-left:3px solid var(--border);padding:10px 14px;background:rgba(139,105,20,.06);font-size:13px;color:var(--ink2);font-style:italic;line-height:1.6;}
-.divorn{text-align:center;color:var(--border);font-size:12px;letter-spacing:8px;margin:24px 0;}
-.rblock{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--parch2);}
-.rblock:last-of-type{border-bottom:none;margin-bottom:0;}
-.rtitle{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;color:var(--red);margin-bottom:8px;text-transform:uppercase;}
-.rtext{font-size:15px;color:var(--ink2);line-height:1.75;}
-.rtext strong{color:var(--ink);}
-.rformula{background:var(--parch2);border:1px solid var(--border);padding:12px;margin:10px 0;font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;color:var(--ink);text-align:center;}
-.rwarn{border-left:3px solid var(--red);padding:10px 14px;background:rgba(139,26,26,.05);font-size:13px;color:var(--ink2);font-style:italic;line-height:1.6;margin-top:10px;}
-.bhome{display:block;width:100%;margin-top:28px;background:transparent;color:var(--ink2);font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;padding:14px;border:1px solid var(--border);}
+.g-head{flex-shrink:0;height:64px;background:var(--night);display:flex;align-items:center;gap:10px;padding:0 8px 0 20px;}
+.g-head span{flex:1;font-family:var(--display);font-weight:700;font-size:19px;color:var(--gold2);}
+.g-head button{min-height:44px;padding:0 12px;color:var(--gold2);font-family:var(--caps);font-size:12px;letter-spacing:2px;}
+.g-body{flex:1;overflow-y:auto;padding:18px 20px 32px;display:flex;flex-direction:column;gap:18px;width:100%;max-width:560px;margin:0 auto;}
+.g-card{background:var(--card);border:1px solid var(--line);padding:16px;}
+.g-status{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.g-status b{display:flex;align-items:center;gap:8px;font-family:var(--caps);font-size:14px;letter-spacing:2px;}
+.g-status i{width:10px;height:10px;border-radius:50%;background:#9C8A6A;}
+.g-status.live i{background:#3F7A3A;}
+.g-status span{font-size:15px;color:var(--ink3);}
+.g-counts{margin-top:12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;text-align:center;}
+.g-counts div{padding:8px 2px;color:#fff;}
+.g-counts b{display:block;font-family:var(--caps);font-size:18px;}
+.g-counts span{font-family:var(--caps);font-size:11px;letter-spacing:1px;}
+.g-row{display:flex;align-items:center;justify-content:space-between;}
+.cgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+.ctile{height:48px;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 10px 0 14px;}
+.ccode{font-family:var(--caps);font-weight:700;font-size:19px;letter-spacing:3px;color:var(--ink);}
+.ctag{font-family:var(--caps);font-weight:700;font-size:11px;letter-spacing:1px;padding:4px 7px;color:#fff;}
+.stepper{display:flex;align-items:center;gap:10px;}
+.stepper span{flex:1;font-family:var(--caps);font-size:13px;letter-spacing:2px;color:#3D2E1A;}
+.stepper button{width:44px;height:44px;border:1px solid #8A6A2A;background:var(--card);font-size:22px;}
+.stepper b{min-width:44px;text-align:center;font-family:var(--display);font-size:26px;}
+.g-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px;}
+.test-row{display:flex;gap:8px;}
+.test-row input{flex:1;min-width:0;height:52px;padding:0 14px;background:var(--card);border:1px solid var(--line);font-family:var(--caps);font-weight:700;font-size:19px;letter-spacing:4px;text-transform:uppercase;outline:none;}
+.test-row button{width:auto;padding:0 18px;}
+.g-msg{color:var(--danger);text-align:left;}
+.g-foot{text-align:center;}
 </style>
 </head>
 <body>
 
-<!-- HOME -->
+<!-- ═════════ HOME ═════════ -->
 <div id="p-splash" class="page on">
-  <div class="swrap">
-    <img class="spillo" src="img/spillo.png" alt="Spillo">
+  <div class="dam" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="splash-in">
+    <div class="kicker">MILANO · SEICENTO</div>
+    <img class="spillo" src="img/spillo.png" alt="Spillo, il cerimoniere della corte">
     <div class="sframe">
-      <div class="sorn">MILANO &nbsp;·&nbsp; SEICENTO</div>
-      <div class="stitle">VIZI<br>NASCOSTI</div>
-      <div class="ssub">Un gioco segreto per la corte</div>
-      <label class="clabel" for="ci">Inserisci il tuo codice</label>
-      <input id="ci" class="cinput" type="text" maxlength="6" placeholder="· · · ·" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false">
-      <button class="bgold" id="btnEntra">Entra nella Corte</button>
-      <div id="berr" class="berr"></div>
-    </div>
-  </div>
-</div>
-
-<!-- AREA GUIDA: si apre solo da indirizzo/#guida -->
-<div id="p-guide" class="page">
-  <div class="ghdr"><span class="gbadge">PRIVATO</span><span class="ghtitle">Alcova della Guida</span><button id="btnLogout" class="glogout" hidden>Esci</button></div>
-  <div class="gbody">
-
-    <!-- Login della guida -->
-    <div id="gLogin">
-      <span class="glabel">Accesso guida</span>
-      <input id="gEmail" class="ginput" type="email" placeholder="Email" autocomplete="username">
-      <input id="gPass" class="ginput" type="password" placeholder="Password" autocomplete="current-password">
-      <button class="bink" id="btnLogin">Entra</button>
-      <div id="gLoginErr" class="gerr"></div>
-    </div>
-
-    <!-- Pannello della guida -->
-    <div id="gPanel" hidden>
-      <div id="gState" class="gstate">Caricamento…</div>
-
-      <span class="glabel">Numero di giocatori</span>
-      <div class="numrow">
-        <button class="nbtn" id="btnMeno" aria-label="Meno">&#8722;</button>
-        <span class="nval" id="nval">20</span>
-        <button class="nbtn" id="btnPiu" aria-label="Più">+</button>
-        <span style="font-size:13px;color:#888;font-style:italic;">20 &ndash; 30</span>
+      <div>
+        <h1 class="stitle">Vizi<br>Nascosti</h1>
+        <p class="ssub">Un gioco segreto per la corte</p>
       </div>
-      <button class="bink" id="btnGen">Nuova partita: genera codici e ruoli</button>
-      <div id="genErr" class="gerr"></div>
-
-      <div id="codeList" hidden style="margin-top:20px;">
-        <span class="glabel">Codici da consegnare</span>
-        <div id="cgrid" class="cgrid"></div>
-        <p class="gnote">Manda ogni codice al singolo giocatore: solo lui vedrà il suo ruolo. I codici restano validi finché non chiudi la partita o ne generi una nuova.</p>
-      </div>
-
-      <div class="gsec">
-        <span class="glabel">Prova un codice</span>
-        <div style="display:flex;gap:10px;">
-          <input id="testci" class="cinput" type="text" maxlength="6" placeholder="· · · ·" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" style="flex:1;margin-bottom:0;color:var(--ink);background:var(--parch2);border-color:var(--border);">
-          <button class="bink" id="btnTest" style="width:auto;padding:14px 20px;letter-spacing:3px;">Entra</button>
+      <div style="width:100%">
+        <label class="code-label" for="ci">IL TUO CODICE SEGRETO</label>
+        <div class="code-wrap">
+          <div class="code-boxes" id="codeBoxes" aria-hidden="true">
+            <div class="code-box"></div><div class="code-box"></div><div class="code-box"></div><div class="code-box"></div>
+          </div>
+          <input id="ci" class="code-input" type="text" inputmode="text" maxlength="4" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" aria-label="Codice segreto di 4 caratteri">
         </div>
-        <div id="testerr" class="gerr"></div>
       </div>
-
-      <div class="gsec">
-        <span class="glabel">Gestione</span>
-        <button class="bline" id="btnClose">Chiudi la partita attiva</button>
-        <button class="bline" id="btnClean">Elimina i codici delle partite chiuse</button>
-        <div id="mgmtMsg" class="gerr"></div>
-      </div>
+      <button class="btn-gold" id="btnEntra">ENTRA NELLA CORTE</button>
+      <div id="berr" class="msg" role="alert"></div>
+      <p class="splash-note">Non hai un codice? Chiedilo alla guida:<br>è personale, non mostrarlo a nessuno.</p>
     </div>
-
-    <button class="bback" id="btnBack">&#8592; Torna alla home</button>
+    <div class="splash-foot" aria-hidden="true"><i></i><span>TOUR DAL VIVO</span><i></i></div>
   </div>
 </div>
 
-<!-- SCHEDA GIOCATORE -->
+<!-- ═════════ GIOCATORE ═════════ -->
 <div id="p-player" class="page">
-  <div id="card-track">
-    <div class="pcard" id="pc-image">
-      <img id="role-img" src="" alt="Scheda del ruolo">
-      <div class="zhint">Pizzica per ingrandire · scorri a sinistra per continuare</div>
+  <header class="p-head">
+    <div class="seal-sm" id="hSeal" aria-hidden="true"></div>
+    <div class="p-head-txt">
+      <span class="p-head-role" id="hRole"></span>
+      <span class="p-head-name" id="hName"></span>
     </div>
-    <div class="pcard">
-      <div class="card-bg">
-        <div class="sectitle">Chi sei</div>
-        <div class="whoami">
-          <div class="pname" id="pName"></div>
-          <div class="pdesc" id="pDesc"></div>
-          <div class="rtagin" id="pRole"></div>
-          <div class="toklabel">RISORSE DI PARTENZA</div>
-          <div class="dotrow" id="pTok"></div>
+    <button class="icon-btn" id="btnHome" aria-label="Esci e torna alla home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h4v16h-4"/><path d="M10 8l-4 4 4 4"/><path d="M6 12h10"/></svg>
+    </button>
+  </header>
+
+  <div class="p-body">
+    <div id="card-track">
+
+      <!-- 1. Scheda -->
+      <section class="pane" id="pane-scheda" role="tabpanel" aria-label="Scheda">
+        <div class="scheda-in">
+          <div class="motto"><small>IL TUO MOTTO</small><p id="sMotto"></p></div>
+          <div class="sbox"><h2>CHI SEI</h2><p id="sRp1"></p></div>
+          <div class="sbox tint"><h2>COME TI MUOVI</h2><p id="sRp2"></p></div>
+          <img class="pers-img" id="sImg" src="" alt="">
         </div>
-        <div id="rp1" class="obpage"></div>
-        <div id="rp2" class="obpage"></div>
-      </div>
-    </div>
-    <div class="pcard">
-      <div class="card-bg">
-        <div class="sectitle">Obiettivi &amp; Guida</div>
-        <div id="op1" class="obpage"></div>
-        <div class="divorn">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
-        <div id="op2" class="obpage"></div>
-      </div>
-    </div>
-    <div class="pcard">
-      <div class="card-bg">
-        <div class="sectitle">Regole Generali</div>
-        <div class="rblock">
-          <div class="rtitle">Come si vince</div>
-          <div class="rtext">Conta il tuo punteggio finale al Castello Sforzesco.</div>
-          <div class="rformula">Monete + Piacere rimasti &minus; Nei = punteggio</div>
-          <div class="rtext">Vince il <strong>ruolo</strong> con la media pi&ugrave; alta &mdash; non il singolo. Conviene aiutare chi ha il tuo stesso ruolo.</div>
+      </section>
+
+      <!-- 2. Chi sei -->
+      <section class="pane" id="pane-chisei" role="tabpanel" aria-label="Chi sei">
+        <div class="hero">
+          <div class="dam" aria-hidden="true"></div>
+          <div class="hero-in">
+            <small>ALLA CORTE SARAI</small>
+            <div class="seal" id="cSeal" aria-hidden="true"></div>
+            <h1 id="cName"></h1>
+            <p id="cDesc"></p>
+            <div class="role-pill" id="cRole"></div>
+          </div>
         </div>
-        <div class="rblock">
-          <div class="rtitle">Gli scambi</div>
-          <div class="rtext">Puoi scambiare qualsiasi carta con chiunque, quando vuoi, al prezzo che vuoi.<br><br><strong>Spostamenti:</strong> deve esserci almeno un testimone casuale vicino.<br><br><strong>Narrazione:</strong> puoi farlo nell&rsquo;ombra &mdash; ma se qualcuno ti vede, sa qualcosa su di te.</div>
+        <div class="sec">
+          <h2 class="h-sec">RISORSE DI PARTENZA</h2>
+          <div class="toks" id="cToks"></div>
+          <p class="hint">Ritira i token dalla guida. Non rivelare il tuo ruolo: il personaggio è il nome con cui ti presenti alla corte.</p>
         </div>
-        <div class="rblock">
-          <div class="rtitle">Accuse e Nei</div>
-          <div class="rtext">Solo <strong>Moralista</strong> e <strong>Cicisbeo</strong> possono accusare &mdash; massimo 2 accuse a testa per tutto il tour.<br><br>1.&nbsp; Dichiari persona e ruolo ad alta voce<br>2.&nbsp; La guida ti consegna un adesivo nero<br>3.&nbsp; Applichi il neo sul viso dell&rsquo;accusato</div>
-          <div class="rwarn">&#10003; Ruolo corretto &rarr; +2 Monete per ogni neo dell&rsquo;accusato<br>&#10007; Ruolo sbagliato &rarr; 0, accusa sprecata</div>
+      </section>
+
+      <!-- 3. Obiettivi -->
+      <section class="pane" id="pane-obiettivi" role="tabpanel" aria-label="Obiettivi">
+        <div class="pane-head"><small id="oRole"></small><h1>Obiettivi</h1></div>
+        <div class="pane-body">
+          <div class="dark-card">
+            <h2><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8" fill="currentColor"/></svg>IL TUO OBIETTIVO</h2>
+            <p id="oText"></p>
+            <div class="sub" id="oNote"></div>
+          </div>
+          <div>
+            <h2 class="h-sec">COME GIOCARTI BENE</h2>
+            <div class="steps" id="oSteps"></div>
+          </div>
+          <div class="tip">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7A5810" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg>
+            <p id="oTip"></p>
+          </div>
         </div>
-        <div class="rblock">
-          <div class="rtitle">Il Neo della Vergogna</div>
-          <div class="rtext">Adesivo nero sul viso. Resta per tutto il tour. Vale <strong>&minus;1 punto</strong>. Non blocca nessuna azione.</div>
+      </section>
+
+      <!-- 4. Regole -->
+      <section class="pane" id="pane-regole" role="tabpanel" aria-label="Regole">
+        <div class="pane-head"><small style="color:var(--goldtext)">PER TUTTA LA CORTE</small><h1>Regole</h1></div>
+        <div class="pane-body" style="gap:14px">
+          <div class="dark-card" style="padding:18px">
+            <h2 style="font-size:13px;letter-spacing:3px">COME SI VINCE</h2>
+            <div class="formula"><span>Monete</span><em aria-label="più">+</em><span>Piacere</span><em aria-label="meno">−</em><span>Nei</span></div>
+            <p style="font-size:16px;line-height:1.5;color:#DCCFB5">Il punteggio si conta al Castello Sforzesco. Vince il <strong>ruolo</strong> con la media più alta, non il singolo: aiuta chi ha il tuo stesso ruolo.</p>
+          </div>
+          <details class="acc" open>
+            <summary>COME SI GUADAGNANO MONETE <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7A5810" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="acc-in">
+              <p>I token si mettono nel <strong>sacchetto della guida</strong> e si prendono le Monete.</p>
+              <ul style="padding-left:20px;margin-top:8px;display:flex;flex-direction:column;gap:8px">
+                <li><strong>Dichiarazione di Virtù</strong> (solo Nobile): mostri la Carta Virtù alla guida davanti a tutti → 1 Moneta. Se hai Piacere in tasca e qualcuno ti accusa in quel momento, ricevi un neo.</li>
+                <li><strong>Piacere Condiviso</strong> (chiunque; il Moralista solo col Cicisbeo): vi scambiate 1 Piacere a testa, lo mettete nel sacchetto → 1 Moneta a testa.</li>
+                <li><strong>1 Piacere + 1 Tabacco → 1 Moneta</strong> (solo Vizioso e Cicisbeo), da soli.</li>
+                <li><strong>2 Piacere → 1 Moneta</strong> (solo Vizioso e Cicisbeo), con discrezione.</li>
+                <li><strong>Circolo di Tabacco</strong> (chiunque): 3 o 4 giocatori in cerchio, ognuno mette 1 Tabacco → 1 Moneta a testa. È l’azione più pubblica del gioco.</li>
+                <li><strong>Tabacco come moneta nera</strong>: offrilo in cambio di informazioni, favori, promesse. Nessuno è obbligato a mantenerle.</li>
+              </ul>
+            </div>
+          </details>
+          <details class="acc">
+            <summary>ACCUSE E NEI <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7A5810" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="acc-in">
+              <p>Accusano solo <strong>Moralista</strong> e <strong>Cicisbeo</strong>, al massimo 2 volte a testa per tutto il tour.</p>
+              <ol><li>Dichiari persona e ruolo ad alta voce</li><li>La guida ti dà un adesivo nero</li><li>Lo applichi sul viso dell’accusato</li></ol>
+              <div class="outcome"><div class="ok"><strong>Ruolo giusto</strong><br>+2 Monete per ogni neo che l’accusato aveva al momento dell’accusa</div><div class="ko"><strong>Ruolo sbagliato</strong><br>il neo resta, ma tu non guadagni e sprechi l’accusa</div></div>
+              <p style="margin-top:10px">Le accuse si verificano al Castello Sforzesco. Il <strong>Cicisbeo</strong> è corruttibile: 1 Tabacco offerto prima che accusi gli fa rinunciare a quell’accusa. Il <strong>Moralista</strong> no: chi ci prova viene accusato subito.</p>
+            </div>
+          </details>
+          <details class="acc">
+            <summary>IL NEO DELLA VERGOGNA <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7A5810" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="acc-in"><p>Adesivo nero sul viso. Resta per tutto il tour e vale <strong>−1 punto</strong>. Non blocca nessuna azione.</p></div>
+          </details>
+          <details class="acc">
+            <summary>GLI SCAMBI <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7A5810" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="acc-in"><p>Puoi scambiare qualsiasi carta con chiunque, quando vuoi, al prezzo che vuoi.</p><p style="margin-top:8px"><strong>Durante gli spostamenti</strong> deve esserci almeno un testimone casuale vicino.</p><p style="margin-top:8px"><strong>Durante la narrazione</strong> puoi farlo nell’ombra, ma se qualcuno ti vede sa qualcosa su di te.</p></div>
+          </details>
+          <details class="acc">
+            <summary>AL CASTELLO SFORZESCO <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7A5810" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="acc-in"><p>Tutti mostrano le carte rimaste, si verificano le accuse e si calcola il punteggio.</p><p style="margin-top:8px">La guida legge ad alta voce i bigliettini rimasti nel sacchetto: le accuse scritte ma non consegnate perché chi le voleva fare aveva già usato le sue 2. Sono i casi irrisolti della corte.</p></div>
+          </details>
         </div>
-        <div class="rblock">
-          <div class="rtitle">Al Castello Sforzesco</div>
-          <div class="rtext">Tutti mostrano le carte rimaste. Si verificano le accuse. Si calcola il punteggio. La guida legge le accuse non consegnate.</div>
-        </div>
-        <button class="bhome" id="btnHome">&#8592; HOME PAGE</button>
-      </div>
+      </section>
     </div>
   </div>
-  <div id="card-dots"></div>
+
+  <nav class="tabbar" role="tablist" aria-label="Sezioni della scheda">
+    <button class="tab" role="tab" aria-selected="true" data-i="0">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Scheda
+    </button>
+    <button class="tab" role="tab" aria-selected="false" data-i="1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8c3-1 6-1 9 1 3-2 6-2 9-1-.5 5-3 8-6 8-1.5 0-2.5-1-3-2-.5 1-1.5 2-3 2-3 0-5.5-3-6-8z"/><circle cx="8" cy="11" r="1"/><circle cx="16" cy="11" r="1"/></svg>Chi sei
+    </button>
+    <button class="tab" role="tab" aria-selected="false" data-i="2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8" fill="currentColor"/></svg>Obiettivi
+    </button>
+    <button class="tab" role="tab" aria-selected="false" data-i="3">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6"/><path d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2"/><path d="M9 9h7M9 13h7"/></svg>Regole
+    </button>
+  </nav>
+</div>
+
+<!-- ═════════ GUIDA: ACCESSO ═════════ -->
+<div id="p-glogin" class="page">
+  <div class="dam" aria-hidden="true"></div>
+  <div class="gl-in">
+    <div class="gl-top">
+      <div class="gl-key" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E6C474" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></div>
+      <div class="kicker">RISERVATO ALLA GUIDA</div>
+      <h1>L’Alcova</h1>
+      <p>Da qui crei la partita e distribuisci i codici segreti.</p>
+    </div>
+    <form id="gForm" style="display:flex;flex-direction:column;gap:16px" onsubmit="return false">
+      <div class="field"><label for="gEmail">EMAIL</label><input id="gEmail" type="email" autocomplete="username"></div>
+      <div class="field"><label for="gPass">PASSWORD</label><input id="gPass" type="password" autocomplete="current-password"></div>
+      <button class="btn-gold" id="btnLogin" type="submit" style="margin-top:6px">ENTRA</button>
+      <div id="gLoginErr" class="msg" role="alert" style="margin-top:0"></div>
+    </form>
+    <button class="back-link" id="btnBack1">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>TORNA ALLA HOME
+    </button>
+  </div>
+</div>
+
+<!-- ═════════ GUIDA: PANNELLO ═════════ -->
+<div id="p-guide" class="page">
+  <header class="g-head"><span>L’Alcova</span><button id="btnBack2">HOME</button><button id="btnLogout">ESCI</button></header>
+  <div class="g-body">
+    <div class="g-card">
+      <div class="g-status" id="gStatus"><b><i aria-hidden="true"></i><span id="gStateTxt" style="color:inherit;font-size:inherit">CARICAMENTO…</span></b><span id="gCount"></span></div>
+      <div class="g-counts" id="gCounts" hidden></div>
+    </div>
+
+    <div id="codeList" hidden>
+      <div class="g-row" style="margin-bottom:8px">
+        <h2 class="h-sec" style="margin:0">CODICI DA CONSEGNARE</h2>
+        <button class="btn-link" id="btnCopy">Copia codici</button>
+      </div>
+      <div class="cgrid" id="cgrid"></div>
+      <p class="hint" style="margin-top:10px">Manda ogni codice a un solo giocatore. Restano validi finché non chiudi la partita o ne generi una nuova.</p>
+    </div>
+
+    <div>
+      <div class="stepper">
+        <span>GIOCATORI</span>
+        <button id="btnMeno" aria-label="Meno giocatori">−</button>
+        <b id="nval">20</b>
+        <button id="btnPiu" aria-label="Più giocatori">+</button>
+      </div>
+      <div class="g-actions">
+        <button class="btn-ink" id="btnGen">NUOVA PARTITA</button>
+        <button class="btn-line" id="btnClose">CHIUDI PARTITA</button>
+      </div>
+      <div id="genErr" class="msg g-msg"></div>
+    </div>
+
+    <div>
+      <h2 class="h-sec">PROVA UN CODICE</h2>
+      <div class="test-row">
+        <input id="testci" type="text" maxlength="4" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" aria-label="Codice da provare">
+        <button class="btn-ink" id="btnTest">APRI</button>
+      </div>
+      <div id="testerr" class="msg g-msg"></div>
+    </div>
+
+    <div class="g-foot">
+      <button class="btn-link" id="btnClean">Elimina i codici delle partite chiuse</button>
+      <div id="mgmtMsg" class="msg g-msg" style="text-align:center"></div>
+    </div>
+  </div>
 </div>
 
 <script type="module">
@@ -248,7 +427,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getDatabase, ref, get, update, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-/* ───────── FIREBASE ───────── */
+/* ───────── FIREBASE ─────────
+   stato/partitaAttiva  → id della partita in corso (o null)
+   partite/{id}         → { creata, giocatori, chiusa? }
+   codici/{CODICE}      → { ruolo, pers:{n,d}, partita, idx }
+   Un codice vale solo se codici/{CODICE}.partita === stato/partitaAttiva. */
 const app = initializeApp({
   apiKey: "AIzaSyAjhTTnqf3L4LLbD5HGVts37SNBkrVQewE",
   authDomain: "degrado-milano.firebaseapp.com",
@@ -258,44 +441,47 @@ const app = initializeApp({
 const db = getDatabase(app);
 const auth = getAuth(app);
 
-/* Struttura del database:
-   stato/partitaAttiva        → id della partita in corso (o null)
-   partite/{id}               → { creata, giocatori, chiusa? }
-   codici/{CODICE}            → { ruolo, pers:{n,d}, partita, idx }
-   Un codice è valido solo se codici/{CODICE}.partita === stato/partitaAttiva. */
-
-/* ───────── DATI DI GIOCO ───────── */
-const ROLE_IMAGES = { NOB:"img/nob.jpg", VIZ:"img/viz.jpg", MOR:"img/mor.jpg", CIC:"img/cic.jpg" };
-
+/* ───────── DATI DI GIOCO ─────────
+   Immagini dei personaggi: public/img/<sigla>-personaggi.jpg */
 const ROLES = {
-  NOB:{name:'NOBILE',color:'#A07010',pip:'pnob',
-    dot:[{n:2,l:'Monete'}],
-    rp1:{h:'Il Nobile',l:'IL TUO RUOLO',t:'Sei il volto rispettabile della corte. La tua reputazione è il tuo bene più prezioso — e la tua arma più affilata.<br><br>Non hai token di partenza oltre le Monete. Il tuo canale esclusivo è la <strong>Dichiarazione di Virtù</strong>: mostri la carta alla guida davanti a tutti, declami nome e grado nobiliare in maniera plateale e guadagni 1 Moneta.'},
-    rp2:{h:'Come ti muovi',l:'IL TUO RUOLO',t:'Partecipa ai <strong>Circoli di Tabacco</strong> con altri giocatori per guadagnare Monete in modo rispettabile.<br><br>Puoi fare <strong>Piacere Condiviso</strong> con chiunque — ma fallo con discrezione.<br><br><strong>Attenzione:</strong> se dichiari Virtù mentre hai Piacere in tasca e qualcuno ti accusa, ricevi un neo.'},
-    op1:{h:'Il tuo obiettivo',l:'NOBILE',t:'Mantieni la reputazione immacolata. Guadagna attraverso la Virtù e i Circoli rispettabili — senza mai sporcarti le mani con il vizio.',n:'Ricorda: vince il ruolo con la media più alta. Aiuta gli altri Nobili ad accumulare punti.'},
-    op2:{h:'Come giocarti bene',l:'NOBILE · GUIDA',t:'Osserva chi si comporta in modo sospetto — anche se non puoi accusare, puoi suggerire al Moralista chi tenere d’occhio, in cambio di protezione.<br><br>Usa il Tabacco come moneta nera per costruire alleanze.',n:'Non rivelare mai il tuo ruolo, nemmeno agli alleati.'}
+  NOB:{name:'NOBILE', plural:'NOBILI', color:'#3E5A8A', tint:'#E4EAF4', img:'img/nob-personaggi.jpg',
+    motto:'Di sole apparenze fai virtù',
+    tok:{Monete:2, Tabacco:0, Piacere:0},
+    rp1:'Sei il volto rispettabile della corte. La tua reputazione è il tuo bene più prezioso — e la tua arma più affilata.<br><br>Il tuo canale esclusivo è la <strong>Dichiarazione di Virtù</strong>: mostri la carta alla guida davanti a tutti, declami nome e grado nobiliare in maniera plateale e guadagni 1 Moneta.',
+    rp2:'Partecipa ai <strong>Circoli di Tabacco</strong> con altri giocatori per guadagnare Monete in modo rispettabile.<br><br>Puoi fare <strong>Piacere Condiviso</strong> con chiunque — ma fallo con discrezione.<br><br><strong>Attenzione:</strong> se dichiari Virtù mentre hai Piacere in tasca e qualcuno ti accusa, ricevi un neo.',
+    op1:{t:'Mantieni la reputazione immacolata. Guadagna attraverso la Virtù e i Circoli rispettabili — senza mai sporcarti le mani con il vizio.',n:'Vince il ruolo con la media più alta: aiuta gli altri Nobili ad accumulare punti.'},
+    op2:{t:['Osserva chi si comporta in modo sospetto: anche se non puoi accusare, puoi suggerire al Moralista chi tenere d’occhio, in cambio di protezione.','Usa il Tabacco come moneta nera per costruire alleanze.'],n:'Non rivelare mai il tuo ruolo, nemmeno agli alleati.'}
   },
-  VIZ:{name:'VIZIOSO',color:'#8B1A1A',pip:'pviz',
-    dot:[{n:3,l:'Piacere'},{n:1,l:'Tabacco'}],
-    rp1:{h:'Il Vizioso',l:'IL TUO RUOLO',t:'Hai tutto il Piacere del mondo ma nessun soldo. Devi convertire i token in Monete senza farti notare dal Moralista o dal Cicisbeo.<br><br>Da solo: <strong>2 Piacere → 1 Moneta</strong>, oppure <strong>1 Piacere + 1 Tabacco → 1 Moneta</strong>.<br><br>Con un altro: <strong>Piacere Condiviso</strong> — guadagnate entrambi 1 Moneta, ma siete più visibili.'},
-    rp2:{h:'Come ti muovi',l:'IL TUO RUOLO',t:'Sei il <strong>bersaglio principale</strong> del Moralista e del Cicisbeo. Ogni azione ti espone — scegli bene quando agire.<br><br>Durante la <strong>narrazione della guida</strong> è il momento migliore per convertire: meno occhi su di te.<br><br>Non puoi accusare nessuno. La tua unica difesa è l’invisibilità.'},
-    op1:{h:'Il tuo obiettivo',l:'VIZIOSO',t:'Converti tutto il Piacere in Monete prima che il tour finisca. Fallo nell’ombra, velocemente, senza farti accusare.',n:'Ogni Piacere non convertito conta nel punteggio finale — ma un neo può azzerare tutto.'},
-    op2:{h:'Come giocarti bene',l:'VIZIOSO · GUIDA',t:'Trova un alleato — un altro Vizioso o un Cicisbeo — con cui fare Piacere Condiviso in sicurezza.<br><br>Usa il Tabacco per comprare silenzio: offri 1 Tabacco a chi ti ha visto agire.',n:'Non fidarti mai di chi si offre di aiutarti troppo facilmente — potrebbe essere il Cicisbeo.'}
+  VIZ:{name:'VIZIOSO', plural:'VIZIOSI', color:'#8C1F5A', tint:'#F5E3EC', img:'img/viz-personaggi.jpg',
+    motto:'Conto a zero, come la morale',
+    tok:{Monete:0, Tabacco:1, Piacere:3},
+    rp1:'Hai tutto il Piacere del mondo ma nessun soldo. Devi convertire i token in Monete senza farti notare dal Moralista o dal Cicisbeo.<br><br>Da solo: <strong>2 Piacere → 1 Moneta</strong>, oppure <strong>1 Piacere + 1 Tabacco → 1 Moneta</strong>.<br><br>Con un altro: <strong>Piacere Condiviso</strong> — guadagnate entrambi 1 Moneta, ma siete più visibili.',
+    rp2:'Sei il <strong>bersaglio principale</strong> del Moralista e del Cicisbeo. Ogni azione ti espone — scegli bene quando agire.<br><br>Durante la <strong>narrazione della guida</strong> è il momento migliore per convertire: meno occhi su di te.<br><br>Non puoi accusare nessuno. La tua unica difesa è l’invisibilità.',
+    op1:{t:'Converti tutto il Piacere in Monete prima che il tour finisca. Fallo nell’ombra, velocemente, senza farti accusare.',n:'Ogni Piacere non convertito conta nel punteggio finale — ma un neo può azzerare tutto.'},
+    op2:{t:['Trova un alleato — un altro Vizioso o un Cicisbeo — con cui fare Piacere Condiviso in sicurezza.','Usa il Tabacco per comprare silenzio: offri 1 Tabacco a chi ti ha visto agire.'],n:'Non fidarti mai di chi si offre di aiutarti troppo facilmente: potrebbe essere il Cicisbeo.'}
   },
-  MOR:{name:'MORALISTA',color:'#444',pip:'pmor',
-    dot:[{n:1,l:'Monete'},{n:2,l:'Tabacco'}],
-    rp1:{h:'Il Moralista',l:'IL TUO RUOLO',t:'Sei il censore della corte. Puoi accusare — ma solo <strong>2 volte</strong> in tutto il tour. Ogni accusa deve essere precisa: dichiari nome e ruolo ad alta voce.<br><br>Se indovini → <strong>+2 Monete per ogni neo</strong> che aveva l’accusato.<br>Se sbagli → 0 guadagno, accusa sprecata.'},
-    rp2:{h:'Come ti muovi',l:'IL TUO RUOLO',t:'<strong>Non sei corruttibile.</strong> Se qualcuno prova a offrirti qualcosa per evitare un’accusa, lo accusi immediatamente.<br><br>Puoi fare Piacere Condiviso solo col <strong>Cicisbeo</strong>.<br><br>Osserva tutto: chi scambia con chi, chi si avvicina al sacchetto, chi evita gli occhi.'},
-    op1:{h:'Il tuo obiettivo',l:'MORALISTA',t:'Usa le 2 accuse nel momento giusto — quando sei sicuro e quando l’accusato ha già accumulato nei. Un’accusa su un giocatore con 2 nei vale 4 Monete.',n:'Non accusare mai per fretta. Aspetta. La certezza vale più della velocità.'},
-    op2:{h:'Come giocarti bene',l:'MORALISTA · GUIDA',t:'Lascia che i Viziosi agiscano — più agiscono più si espongono.<br><br>Partecipa ai Circoli di Tabacco: ti dà informazioni su chi ha token.',n:'La tua reputazione di incorruttibile è la tua forza — usala per spaventare, non solo per accusare.'}
+  MOR:{name:'MORALISTA', plural:'MORALISTI', color:'#6B4E9B', tint:'#EFE6F5', img:'img/mor-personaggi.jpg',
+    motto:'Controlla gli altri per distrarsi da sé',
+    tok:{Monete:1, Tabacco:2, Piacere:0},
+    rp1:'Sei il censore della corte. Puoi accusare — ma solo <strong>2 volte</strong> in tutto il tour. Ogni accusa deve essere precisa: dichiari nome e ruolo ad alta voce.<br><br>Se indovini → <strong>+2 Monete per ogni neo</strong> che aveva l’accusato.<br>Se sbagli → nessun guadagno, accusa sprecata.',
+    rp2:'<strong>Non sei corruttibile.</strong> Se qualcuno prova a offrirti qualcosa per evitare un’accusa, lo accusi immediatamente.<br><br>Puoi fare Piacere Condiviso <strong>solo col Cicisbeo</strong>.<br><br>Osserva tutto: chi scambia con chi, chi si avvicina al sacchetto, chi evita gli occhi.',
+    op1:{t:'Usa le 2 accuse nel momento giusto — quando sei sicuro e quando l’accusato ha già accumulato nei. Un’accusa su un giocatore con 2 nei vale 4 Monete.',n:'Non accusare mai per fretta. Aspetta.'},
+    op2:{t:['Lascia che i Viziosi agiscano: più agiscono, più si espongono.','Partecipa ai Circoli di Tabacco: ti danno informazioni su chi ha token.'],n:'La tua reputazione di incorruttibile è la tua forza: usala per spaventare, non solo per accusare.'}
   },
-  CIC:{name:'CICISBEO',color:'#1A3A5C',pip:'pcic',
-    dot:[{n:1,l:'Monete'},{n:1,l:'Piacere'},{n:1,l:'Tabacco'}],
-    rp1:{h:'Il Cicisbeo',l:'IL TUO RUOLO',t:'Sei il fulcro della corte. Puoi fare quasi tutto — ma con una regola ferrea: <strong>non proponi mai tu per primo.</strong> Aspetti sempre che qualcuno venga da te.<br><br>Puoi accusare (max 2 volte) — ma solo chi ha già interagito con te durante il tour.'},
-    rp2:{h:'Come ti muovi',l:'IL TUO RUOLO',t:'<strong>Vulnerabilità:</strong> se qualcuno ti offre 1 Tabacco prima che tu accusi, sei obbligato a rinunciare a quell’accusa.<br><br>Ogni persona che viene da te è un’informazione. Più interazioni hai, più bersagli per le accuse.'},
-    op1:{h:'Il tuo obiettivo',l:'CICISBEO',t:'Lascia che la corte venga da te. Accumula interazioni, raccogli informazioni, poi usa le 2 accuse con precisione su chi hai già visto in azione.',n:'Puoi accusare solo chi ha interagito con te. Ogni interazione è un potenziale bersaglio futuro.'},
-    op2:{h:'Come giocarti bene',l:'CICISBEO · GUIDA',t:'Posizionati sempre al centro del gruppo. Sembri disponibile, curioso, innocuo.<br><br>Non fare mai la prima mossa — anche quando vorresti proporre uno scambio. Aspetta.',n:'Sei l’unico che può essere corrotto. Sfruttalo: fai capire che sei corruttibile per attirare chi ha qualcosa da nascondere.'}
+  CIC:{name:'CICISBEO', plural:'CICISBEI', color:'#4F7350', tint:'#E5EEE3', img:'img/cic-personaggi.jpg',
+    motto:'Accessorio con le gambe',
+    tok:{Monete:1, Tabacco:1, Piacere:1},
+    rp1:'Sei il fulcro della corte. Puoi fare quasi tutto — ma con una regola ferrea: <strong>non proponi mai tu per primo.</strong> Aspetti sempre che qualcuno venga da te.<br><br>Puoi accusare (max 2 volte) — ma solo chi ha già interagito con te durante il tour.',
+    rp2:'<strong>Vulnerabilità:</strong> se qualcuno ti offre 1 Tabacco prima che tu accusi, sei obbligato a rinunciare a quell’accusa.<br><br>Come il Vizioso, puoi convertire: <strong>2 Piacere → 1 Moneta</strong>, oppure <strong>1 Piacere + 1 Tabacco → 1 Moneta</strong>.<br><br>Ogni persona che viene da te è un’informazione. Più interazioni hai, più bersagli per le accuse.',
+    op1:{t:'Lascia che la corte venga da te. Accumula interazioni, raccogli informazioni, poi usa le 2 accuse con precisione su chi hai già visto in azione.',n:'Puoi accusare solo chi ha interagito con te: ogni interazione è un potenziale bersaglio.'},
+    op2:{t:['Posizionati sempre al centro del gruppo. Sembri disponibile, curioso, innocuo.','Non fare mai la prima mossa — anche quando vorresti proporre uno scambio. Aspetta.'],n:'Sei l’unico che può essere corrotto. Sfruttalo: fai capire che sei corruttibile per attirare chi ha qualcosa da nascondere.'}
   }
+};
+
+const TOK_ICONS = {
+  Monete:'<svg viewBox="0 0 24 24" fill="none" stroke="#9A6E12" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5.5"/><path d="M12 9v6"/></svg>',
+  Tabacco:'<svg viewBox="0 0 24 24" fill="none" stroke="#7B4A2A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13h10l1 3h3a3 3 0 0 0 3-3V9"/><path d="M13 13V9h7"/><path d="M6 10c0-2 2-2 2-4M9 10c0-2 2-2 2-4"/></svg>',
+  Piacere:'<svg viewBox="0 0 24 24" fill="none" stroke="#8C1F5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>'
 };
 
 const PERS = [
@@ -341,194 +527,134 @@ function goTo(id){
   $(id).classList.add('on');
   window.scrollTo(0,0);
 }
-function shuffle(a){
-  const b = a.slice();
-  for (let i=b.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]]; }
-  return b;
+function shuffle(a){ const b=a.slice(); for(let i=b.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [b[i],b[j]]=[b[j],b[i]]; } return b; }
+function mkCode(){ const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let s=''; for(let i=0;i<4;i++) s+=c[Math.floor(Math.random()*c.length)]; return s; }
+function withTimeout(p, ms=10000){ return Promise.race([p, new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')), ms))]); }
+function normCode(v){ return v.toUpperCase().replace(/[^A-Z0-9]/g,''); }
+const isPerm = err => String(err && err.message || '').toLowerCase().includes('permission');
+const initial = s => (s||'').replace(/^(Don|Donna|Il|La|Ser|Suor)\s+/,'').trim().charAt(0).toUpperCase();
+
+/* ───────── HOME: 4 caselle del codice ───────── */
+const ci = $('ci'), boxes = [...$('codeBoxes').children];
+function paintBoxes(){
+  const v = normCode(ci.value).slice(0,4);
+  if (ci.value !== v) ci.value = v;
+  const focused = document.activeElement === ci;
+  boxes.forEach((b,i)=>{
+    b.textContent = v[i] || '';
+    b.classList.toggle('filled', !!v[i]);
+    b.classList.toggle('cur', focused && i === Math.min(v.length,3) && v.length < 4);
+  });
 }
-function mkCode(){
-  const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let s='';
-  for (let i=0;i<4;i++) s+=c[Math.floor(Math.random()*c.length)];
-  return s;
-}
-function withTimeout(p, ms=10000){
-  return Promise.race([p, new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')), ms))]);
-}
-function normCode(v){ return v.trim().toUpperCase().replace(/\s+/g,''); }
+['input','focus','blur'].forEach(ev => ci.addEventListener(ev, paintBoxes));
+ci.addEventListener('keydown', e=>{ if(e.key==='Enter') $('btnEntra').click(); });
 
 /* ───────── LOGIN GIOCATORE ───────── */
 async function lookupCode(code){
-  const [stSnap, cSnap] = await withTimeout(Promise.all([
-    get(ref(db,'stato/partitaAttiva')),
-    get(ref(db,'codici/'+code))
-  ]));
-  const attiva = stSnap.val();
-  const d = cSnap.val();
+  const [stSnap, cSnap] = await withTimeout(Promise.all([ get(ref(db,'stato/partitaAttiva')), get(ref(db,'codici/'+code)) ]));
+  const attiva = stSnap.val(), d = cSnap.val();
   if (!d || !attiva || d.partita !== attiva || !ROLES[d.ruolo]) return null;
   return d;
 }
-
-async function enterWithCode(inputId, errId){
-  const code = normCode($(inputId).value);
-  const e = $(errId);
-  if (!code){ e.textContent='Inserisci il codice ricevuto.'; return; }
-  e.textContent='Verifico…';
+async function enterWithCode(inputEl, errEl){
+  const code = normCode(inputEl.value);
+  if (code.length !== 4){ errEl.textContent = 'Il codice ha 4 caratteri.'; return; }
+  errEl.textContent = 'Verifico…';
   let d;
-  try { d = await lookupCode(code); }
-  catch(err){ console.warn(err); e.textContent=NET_ERR; return; }
-  if (!d){ e.textContent='Codice non riconosciuto o partita chiusa. Riprova.'; return; }
-  e.textContent='';
+  try { d = await lookupCode(code); } catch(err){ console.warn(err); errEl.textContent = NET_ERR; return; }
+  if (!d){ errEl.textContent = 'Codice non riconosciuto o partita chiusa.'; return; }
+  errEl.textContent = '';
   showPlayer(d);
 }
-
-$('btnEntra').addEventListener('click', ()=>enterWithCode('ci','berr'));
-$('ci').addEventListener('keydown', e=>{ if(e.key==='Enter') $('btnEntra').click(); });
-$('btnTest').addEventListener('click', ()=>enterWithCode('testci','testerr'));
+$('btnEntra').addEventListener('click', ()=>enterWithCode(ci, $('berr')));
+$('btnTest').addEventListener('click', ()=>enterWithCode($('testci'), $('testerr')));
 $('testci').addEventListener('keydown', e=>{ if(e.key==='Enter') $('btnTest').click(); });
 
 /* ───────── SCHEDA GIOCATORE ───────── */
-function obBlock(o, color){
-  return '<div class="obh">'+o.h+'</div><div class="obl" style="color:'+color+'">'+o.l+'</div><div class="obt">'+o.t+'</div>'+(o.n?'<div class="obn">'+o.n+'</div>':'');
-}
 function showPlayer(d){
-  const R = ROLES[d.ruolo];
-  $('role-img').src = ROLE_IMAGES[d.ruolo];
-  const pers = d.pers || {};
-  $('pName').textContent = pers.n || '';
-  $('pDesc').textContent = pers.d || '';
-  $('pRole').textContent = R.name;
-  $('pRole').style.color = R.color; $('pRole').style.borderColor = R.color;
-  $('pTok').innerHTML = R.dot.map(t=>'<span class="tok"><span class="tokn">'+t.n+'</span>'+t.l+'</span>').join('');
-  $('rp1').innerHTML = obBlock(R.rp1, R.color);
-  $('rp2').innerHTML = obBlock(R.rp2, R.color);
-  $('op1').innerHTML = obBlock(R.op1, R.color);
-  $('op2').innerHTML = obBlock(R.op2, R.color);
-  document.querySelectorAll('.pcard').forEach(c=>c.scrollTop=0);
-  zoomReset();
-  goCard(0);
+  const R = ROLES[d.ruolo], pers = d.pers || {n:'', d:''};
+  const root = $('p-player').style;
+  root.setProperty('--role', R.color); root.setProperty('--role-tint', R.tint);
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#120D07');
+
+  $('hSeal').textContent = R.name.charAt(0);
+  $('hRole').textContent = R.name;
+  $('hName').textContent = pers.n;
+
+  $('sMotto').textContent = '«' + R.motto + '»';
+  $('sRp1').innerHTML = R.rp1;
+  $('sRp2').innerHTML = R.rp2;
+  $('sImg').src = R.img;
+  $('sImg').alt = 'Illustrazione del ' + R.name.toLowerCase();
+
+  $('cSeal').textContent = initial(pers.n) || R.name.charAt(0);
+  $('cName').textContent = pers.n;
+  $('cDesc').textContent = pers.d;
+  $('cRole').textContent = R.name;
+  $('cToks').innerHTML = Object.entries(R.tok).map(([k,n]) =>
+    '<div class="tok'+(n?'':' zero')+'">'+TOK_ICONS[k]+'<b>'+n+'</b><span>'+(k==='Monete' && n===1 ? 'Moneta' : k)+'</span></div>').join('');
+
+  $('oRole').textContent = R.name;
+  $('oText').innerHTML = R.op1.t;
+  $('oNote').textContent = R.op1.n;
+  $('oSteps').innerHTML = R.op2.t.map((t,i)=>'<div class="step"><span class="step-n">'+(i+1)+'</span><p>'+t+'</p></div>').join('');
+  $('oTip').textContent = R.op2.n;
+
+  document.querySelectorAll('.pane').forEach(p=>p.scrollTop=0);
+  goCard(0, false);
   goTo('p-player');
 }
-$('btnHome').addEventListener('click', ()=>{ goCard(0); goTo('p-splash'); });
+$('btnHome').addEventListener('click', ()=>{ ci.value=''; paintBoxes(); goTo('p-splash'); });
 
-/* Carte scorrevoli */
+/* Sezioni: barra in basso + scorrimento col dito */
 const track = $('card-track');
-const cards = document.querySelectorAll('.pcard');
-const dotsEl = $('card-dots');
-cards.forEach((_,i)=>{ const s=document.createElement('span'); s.className='dot'+(i===0?' on':''); dotsEl.appendChild(s); });
+const panes = document.querySelectorAll('.pane');
+const tabs = document.querySelectorAll('.tab');
 let curCard = 0;
-function goCard(n){
-  curCard = Math.max(0, Math.min(cards.length-1, n));
+function goCard(n, anim=true){
+  curCard = Math.max(0, Math.min(panes.length-1, n));
+  if (!anim){ track.style.transition='none'; requestAnimationFrame(()=>track.style.transition=''); }
   track.style.transform = 'translateX(-'+(curCard*100)+'%)';
-  dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on', i===curCard));
+  tabs.forEach((t,i)=>t.setAttribute('aria-selected', String(i===curCard)));
 }
+tabs.forEach(t=>t.addEventListener('click', ()=>goCard(+t.dataset.i)));
 (function initSwipe(){
   let sx=0, sy=0, st=0, multi=false;
-  track.addEventListener('touchstart', e=>{
-    multi = e.touches.length>1;
-    sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now();
-  }, {passive:true});
+  track.addEventListener('touchstart', e=>{ multi=e.touches.length>1; sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now(); }, {passive:true});
   track.addEventListener('touchmove', e=>{ if(e.touches.length>1) multi=true; }, {passive:true});
   track.addEventListener('touchend', e=>{
-    if (e.touches.length>0) return;
-    if (multi || zoomScale>1.05) return;
+    if (e.touches.length>0 || multi) return;
     const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy, dt=Date.now()-st;
-    if (Math.abs(dx)>Math.abs(dy)*1.2 && Math.abs(dx)>45 && dt<600) goCard(curCard+(dx<0?1:-1));
+    if (Math.abs(dx)>Math.abs(dy)*1.3 && Math.abs(dx)>50 && dt<600) goCard(curCard+(dx<0?1:-1));
   }, {passive:true});
-  // Tastiera / mouse (test da computer)
   document.addEventListener('keydown', e=>{
     if (!$('p-player').classList.contains('on')) return;
     if (e.key==='ArrowRight') goCard(curCard+1);
     if (e.key==='ArrowLeft') goCard(curCard-1);
   });
-  dotsEl.addEventListener('click', e=>{
-    const i=[...dotsEl.children].indexOf(e.target); if(i>=0) goCard(i);
-  });
 })();
 
-/* Zoom a due dita sulla scheda (trasforma direttamente l'immagine) */
-const zImg = $('role-img'), zCon = $('pc-image');
-let zoomScale=1, zx=0, zy=0;
-function zoomApply(){
-  const cw=zCon.clientWidth, ch=zCon.clientHeight;
-  const iw=zImg.offsetWidth*zoomScale, ih=zImg.offsetHeight*zoomScale;
-  // l'immagine parte dall'angolo in alto a sinistra del contenitore scrollato
-  zx = Math.min(0, Math.max(cw-iw, zx));
-  zy = Math.min(0, Math.max(Math.min(0, ch-ih), zy));
-  zImg.style.transform = 'translate('+zx+'px,'+zy+'px) scale('+zoomScale+')';
-  zCon.classList.toggle('zoomed', zoomScale>1.01);
+/* ───────── AREA GUIDA (indirizzo/#guida) ───────── */
+let nP = MIN_P, partitaAttiva = null, currentList = [], authUser = null, authKnown = false;
+
+function inGuide(){ return location.hash.toLowerCase() === '#guida'; }
+function routeGuide(){
+  if (!inGuide()) return;
+  if (!authKnown) return;               // aspetta di sapere se la guida è già loggata
+  goTo(authUser ? 'p-guide' : 'p-glogin');
 }
-function zoomReset(anim){
-  if (anim){ zImg.style.transition='transform .25s ease'; setTimeout(()=>zImg.style.transition='',280); }
-  // porta lo scroll attuale dentro la trasformazione, poi azzera
-  zoomScale=1; zx=0; zy=0; zImg.style.transform=''; zCon.classList.remove('zoomed');
-}
-(function initPinch(){
-  let pinch=false, drag=false, d0=0, s0=1, x0=0, y0=0, mx0=0, my0=0, dsx=0, dsy=0, lastTap=0;
-  const dist=t=>Math.hypot(t[0].clientX-t[1].clientX, t[0].clientY-t[1].clientY);
-  const mid=t=>({x:(t[0].clientX+t[1].clientX)/2, y:(t[0].clientY+t[1].clientY)/2});
-  zCon.addEventListener('touchstart', e=>{
-    const r = zCon.getBoundingClientRect();
-    if (e.touches.length===2){
-      if (zoomScale<=1.01){
-        // entra nello zoom: congela lo scroll verticale dentro la traslazione
-        zy = -zCon.scrollTop; zCon.scrollTop = 0; zx = 0;
-      }
-      pinch=true; drag=false;
-      d0=dist(e.touches); s0=zoomScale; x0=zx; y0=zy;
-      const m=mid(e.touches); mx0=m.x-r.left; my0=m.y-r.top;
-      e.preventDefault();
-    } else if (e.touches.length===1){
-      const now=Date.now();
-      if (now-lastTap<300 && zoomScale>1.01){
-        // doppio tocco: torna alla visione normale, alla stessa altezza
-        const keep = -zy/zoomScale;
-        zoomReset(false); zCon.scrollTop = keep;
-        e.preventDefault(); lastTap=0; return;
-      }
-      lastTap=now;
-      if (zoomScale>1.01){ drag=true; dsx=e.touches[0].clientX-zx; dsy=e.touches[0].clientY-zy; e.preventDefault(); }
-    }
-  }, {passive:false});
-  zCon.addEventListener('touchmove', e=>{
-    if (pinch && e.touches.length===2){
-      const r = zCon.getBoundingClientRect();
-      const s = Math.min(4, Math.max(1, s0*dist(e.touches)/d0));
-      const m = mid(e.touches), mx=m.x-r.left, my=m.y-r.top;
-      // mantiene fermo sotto le dita il punto dell'immagine pizzicato
-      zx = mx - (mx0 - x0)*(s/s0);
-      zy = my - (my0 - y0)*(s/s0);
-      zoomScale = s; zoomApply(); e.preventDefault();
-    } else if (drag && e.touches.length===1){
-      zx=e.touches[0].clientX-dsx; zy=e.touches[0].clientY-dsy; zoomApply(); e.preventDefault();
-    }
-  }, {passive:false});
-  zCon.addEventListener('touchend', e=>{
-    if (e.touches.length<2) pinch=false;
-    if (e.touches.length===0){
-      drag=false;
-      if (zoomScale<1.05){ const keep=-zy; zoomReset(false); zCon.scrollTop=keep; }
-    }
-  }, {passive:true});
-})();
-
-/* ───────── AREA GUIDA ───────── */
-let nP = MIN_P, partitaAttiva = null;
-
-function openGuide(){ goTo('p-guide'); }
-function routeFromHash(){ if (location.hash.toLowerCase()==='#guida') openGuide(); }
-window.addEventListener('hashchange', routeFromHash);
-routeFromHash();
-
-$('btnBack').addEventListener('click', ()=>{ history.replaceState(null,'',location.pathname); goTo('p-splash'); });
+window.addEventListener('hashchange', ()=>{ if (inGuide()) routeGuide(); });
+function leaveGuide(){ history.replaceState(null,'',location.pathname); goTo('p-splash'); }
+$('btnBack1').addEventListener('click', leaveGuide);
+$('btnBack2').addEventListener('click', leaveGuide);
 
 onAuthStateChanged(auth, user=>{
-  $('gLogin').hidden = !!user;
-  $('gPanel').hidden = !user;
-  $('btnLogout').hidden = !user;
+  authUser = user; authKnown = true;
   if (user) loadState();
+  routeGuide();
 });
 
-$('btnLogin').addEventListener('click', async ()=>{
+$('gForm').addEventListener('submit', async ()=>{
   const e=$('gLoginErr'); e.textContent='Accesso…';
   try {
     await withTimeout(signInWithEmailAndPassword(auth, $('gEmail').value.trim(), $('gPass').value));
@@ -538,44 +664,57 @@ $('btnLogin').addEventListener('click', async ()=>{
     e.textContent = (err.message==='timeout' || err.code==='auth/network-request-failed') ? NET_ERR : 'Email o password errate.';
   }
 });
-$('gPass').addEventListener('keydown', e=>{ if(e.key==='Enter') $('btnLogin').click(); });
 $('btnLogout').addEventListener('click', ()=>signOut(auth));
 
-function renderGrid(list){
+function renderState(list){
+  currentList = list.slice().sort((a,b)=>(a.idx||0)-(b.idx||0));
+  const live = !!partitaAttiva;
+  $('gStatus').classList.toggle('live', live);
+  $('gStateTxt').textContent = live ? 'PARTITA IN CORSO' : 'NESSUNA PARTITA';
+  $('gCount').textContent = live ? currentList.length+' codici' : '';
+  const counts = {NOB:0,VIZ:0,MOR:0,CIC:0}; currentList.forEach(c=>{ if(counts[c.ruolo]!=null) counts[c.ruolo]++; });
+  $('gCounts').innerHTML = Object.keys(counts).map(r=>'<div style="background:'+ROLES[r].color+'"><b>'+counts[r]+'</b><span>'+ROLES[r].plural+'</span></div>').join('');
+  $('gCounts').hidden = !live || !currentList.length;
   const grid=$('cgrid'); grid.innerHTML='';
-  list.sort((a,b)=>(a.idx||0)-(b.idx||0)).forEach(({code, ruolo})=>{
+  currentList.forEach(({code, ruolo})=>{
     const R=ROLES[ruolo]; if(!R) return;
     const t=document.createElement('div'); t.className='ctile';
-    t.innerHTML='<span class="ccode"></span><span class="pip '+R.pip+'">'+R.name.slice(0,3)+'</span>';
+    t.innerHTML='<span class="ccode"></span><span class="ctag" style="background:'+R.color+'">'+ruolo+'</span>';
     t.querySelector('.ccode').textContent=code;
     grid.appendChild(t);
   });
-  $('codeList').hidden = list.length===0;
+  $('codeList').hidden = !live || !currentList.length;
 }
 
 async function loadState(){
-  const st=$('gState'); st.textContent='Caricamento…';
+  $('gStateTxt').textContent='CARICAMENTO…';
   try {
     partitaAttiva = (await withTimeout(get(ref(db,'stato/partitaAttiva')))).val();
-    if (!partitaAttiva){ st.textContent='Nessuna partita attiva. Genera i codici per iniziarne una.'; renderGrid([]); return; }
+    if (!partitaAttiva){ renderState([]); return; }
     const snap = await withTimeout(get(query(ref(db,'codici'), orderByChild('partita'), equalTo(partitaAttiva))));
     const list=[]; snap.forEach(c=>{ list.push({code:c.key, ruolo:c.val().ruolo, idx:c.val().idx}); });
-    st.innerHTML='<strong>Partita attiva</strong> · '+list.length+' codici validi';
-    renderGrid(list);
+    renderState(list);
   } catch(err){
     console.warn(err);
-    st.textContent = String(err.message||'').includes('ermission') ? 'Questo account non è autorizzato come guida.' : NET_ERR;
+    $('gStateTxt').textContent = isPerm(err) ? 'ACCOUNT NON AUTORIZZATO' : 'SENZA CONNESSIONE';
   }
 }
+
+$('btnCopy').addEventListener('click', async ()=>{
+  const txt = currentList.map(c=>c.code).join('\n');
+  try { await navigator.clipboard.writeText(txt); $('btnCopy').textContent='Copiati!'; }
+  catch(e){ $('btnCopy').textContent='Copia non riuscita'; }
+  setTimeout(()=>$('btnCopy').textContent='Copia codici', 1800);
+});
 
 $('btnMeno').addEventListener('click', ()=>{ nP=Math.max(MIN_P,nP-1); $('nval').textContent=nP; });
 $('btnPiu').addEventListener('click', ()=>{ nP=Math.min(MAX_P,nP+1); $('nval').textContent=nP; });
 
 $('btnGen').addEventListener('click', async ()=>{
   const e=$('genErr');
-  if (partitaAttiva && !confirm('C’è già una partita attiva: i suoi codici smetteranno di funzionare. Continuare?')) return;
+  if (partitaAttiva && !confirm('C’è già una partita in corso: i suoi codici smetteranno di funzionare. Continuare?')) return;
   $('btnGen').disabled=true; e.textContent='Genero e salvo…';
-  // Distribuzione: base = n/4 per ruolo, i resti vanno a VIZ, NOB, CIC nell'ordine
+  // Distribuzione: n/4 per ruolo, i resti vanno a VIZ, NOB, CIC nell'ordine
   const base=Math.floor(nP/4), extra=nP%4;
   const counts={NOB:base,VIZ:base,MOR:base,CIC:base};
   ['VIZ','NOB','CIC'].slice(0,extra).forEach(r=>counts[r]++);
@@ -594,30 +733,27 @@ $('btnGen').addEventListener('click', async ()=>{
   updates['stato/partitaAttiva'] = id;
   try {
     await withTimeout(update(ref(db), updates), 15000);
-    partitaAttiva = id;
-    e.textContent='';
-    $('gState').innerHTML='<strong>Partita attiva</strong> · '+nP+' codici validi';
-    renderGrid(list);
+    partitaAttiva = id; e.textContent=''; renderState(list);
   } catch(err){
     console.warn(err);
-    e.textContent = String(err.message||'').includes('ermission') ? 'Questo account non è autorizzato a generare codici.' : NET_ERR+' I codici NON sono stati salvati.';
+    e.textContent = isPerm(err) ? 'Questo account non può generare codici.' : NET_ERR+' I codici NON sono stati salvati.';
   } finally { $('btnGen').disabled=false; }
 });
 
 $('btnClose').addEventListener('click', async ()=>{
-  const m=$('mgmtMsg');
-  if (!partitaAttiva){ m.textContent='Non c’è nessuna partita attiva.'; return; }
+  const e=$('genErr');
+  if (!partitaAttiva){ e.textContent='Non c’è nessuna partita in corso.'; return; }
   if (!confirm('Chiudere la partita? Tutti i suoi codici smetteranno di funzionare.')) return;
-  m.textContent='Chiudo…';
+  e.textContent='Chiudo…';
   try {
     await withTimeout(update(ref(db), { ['partite/'+partitaAttiva+'/chiusa']: Date.now(), 'stato/partitaAttiva': null }));
-    m.textContent='Partita chiusa.'; partitaAttiva=null; loadState();
-  } catch(err){ console.warn(err); m.textContent=NET_ERR; }
+    partitaAttiva=null; e.textContent='Partita chiusa.'; renderState([]);
+  } catch(err){ console.warn(err); e.textContent=NET_ERR; }
 });
 
 $('btnClean').addEventListener('click', async ()=>{
   const m=$('mgmtMsg');
-  if (!confirm('Eliminare dal database tutti i codici che non appartengono alla partita attiva?')) return;
+  if (!confirm('Eliminare dal database tutti i codici che non appartengono alla partita in corso?')) return;
   m.textContent='Elimino…';
   try {
     const snap = await withTimeout(get(ref(db,'codici')), 20000);

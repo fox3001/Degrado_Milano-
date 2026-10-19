@@ -23,10 +23,10 @@ Tutte le immagini sono in `public/img/` e hanno nomi fissi:
 
 | File | Cosa è |
 |---|---|
-| `nob.jpg` | Scheda del Nobile |
-| `viz.jpg` | Scheda del Vizioso |
-| `mor.jpg` | Scheda del Moralista |
-| `cic.jpg` | Scheda del Cicisbeo |
+| `nob-personaggi.jpg` | Illustrazioni del Nobile (in fondo alla sua scheda) |
+| `viz-personaggi.jpg` | Illustrazioni del Vizioso |
+| `mor-personaggi.jpg` | Illustrazioni del Moralista |
+| `cic-personaggi.jpg` | Illustrazioni del Cicisbeo |
 | `spillo.png` | Personaggio della home (PNG con sfondo trasparente) |
 | `damask.jpg` | Motivo damascato dello sfondo, ripetuto a piastrelle |
 
@@ -35,9 +35,19 @@ Per sostituirne una:
 2. modificala e salvala **con lo stesso nome e lo stesso formato**;
 3. torna in `public/img/` e scegli **Add file → Upload files**, trascina il file e conferma con **Commit changes**. GitHub sostituisce quello vecchio.
 
-Le dimensioni non devono essere identiche: la scheda si adatta sempre alla larghezza del telefono. Conviene però restare intorno ai **1080 px di larghezza** e sotto **500 KB**. Le schede vanno lette con la rete mobile.
+Le dimensioni non devono essere identiche: le immagini si adattano sempre alla larghezza del telefono. Conviene però restare intorno ai **1080 px di larghezza** e sotto **500 KB**. Le schede vanno lette con la rete mobile.
 
 Dopo il caricamento il sito si aggiorna da solo in 1–2 minuti, se hai attivato la pubblicazione automatica (vedi sotto). I telefoni vedono subito la nuova versione, perché le immagini non vengono tenute in cache.
+
+## Cambiare i testi delle schede
+I testi della scheda di ogni ruolo non sono più dentro un'immagine. Sono scritti nell'app, nel blocco `ROLES` all'inizio dello script in `public/index.html`:
+- `motto`: la frase nel riquadro scuro;
+- `rp1`: il riquadro "Chi sei";
+- `rp2`: il riquadro "Come ti muovi";
+- `op1` e `op2`: la pagina Obiettivi;
+- `tok`: le risorse di partenza.
+
+Si modificano direttamente da GitHub (icona della matita) e il sito si aggiorna da solo.
 
 ## Prima configurazione (una volta sola)
 
