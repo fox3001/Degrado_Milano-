@@ -252,7 +252,8 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
       <!-- 1. Scheda -->
       <section class="pane" id="pane-scheda" role="tabpanel" aria-label="Scheda">
         <div class="scheda-in">
-          <div class="motto"><small>IL TUO MOTTO</small><p id="sMotto"></p></div>
+          <div class="motto"><p id="sMotto"></p></div>
+          <img class="pers-img" id="sImg" src="" alt="">
           <div class="gesto-box" id="sGestoBox" hidden>
             <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11.5V4a1.5 1.5 0 0 1 3 0v8"/><path d="M14 11.5V6a1.5 1.5 0 0 1 3 0v7.5"/><path d="M8 13l-1.6-1.6a1.6 1.6 0 0 0-2.3 2.3L8 18a6 6 0 0 0 4.5 2h.5a5 5 0 0 0 5-5v-1.5"/></svg>IL TUO GESTO SEGRETO</h2>
             <p class="g-what" id="sGesto"></p>
@@ -260,7 +261,6 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
           </div>
           <div class="sbox"><h2>CHI SEI</h2><p id="sRp1"></p></div>
           <div class="sbox tint"><h2>COME TI MUOVI</h2><p id="sRp2"></p></div>
-          <img class="pers-img" id="sImg" src="" alt="">
         </div>
       </section>
 
@@ -501,7 +501,7 @@ const ROLES = {
     op2:{t:['Trova un alleato — un altro Vizioso o un Cicisbeo — con cui fare Piacere Condiviso in sicurezza.','Usa il Tabacco per comprare silenzio: offri 1 Tabacco a chi ti ha visto agire.'],n:'Non fidarti mai di chi si offre di aiutarti troppo facilmente: potrebbe essere il Cicisbeo.'}
   },
   MOR:{name:'MORALISTA', plural:'MORALISTI', color:'#6B4E9B', tint:'#EFE6F5', img:'img/mor-personaggi.jpg',
-    motto:'Controlla gli altri per distrarsi da sé',
+    motto:'Controlli gli altri per distrarti dai tuoi desideri più sporchi',
     tok:{Monete:1, Tabacco:2, Piacere:0},
     rp1:'Sei il censore della corte. Puoi accusare — ma solo <strong>2 volte</strong> in tutto il tour. Ogni accusa deve essere precisa: dichiari nome e ruolo ad alta voce.<br><br>Se indovini → <strong>+2 Monete per ogni neo</strong> che aveva l’accusato.<br>Se sbagli → nessun guadagno, accusa sprecata.',
     rp2:'<strong>Non sei corruttibile.</strong> Se qualcuno prova a offrirti qualcosa per evitare un’accusa, lo accusi immediatamente.<br><br>Puoi fare Piacere Condiviso <strong>solo col Cicisbeo</strong>.<br><br>Osserva tutto: chi scambia con chi, chi si avvicina al sacchetto, chi evita gli occhi.',
