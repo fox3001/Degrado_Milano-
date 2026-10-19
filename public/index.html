@@ -313,13 +313,13 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
         <div class="pane-body" style="gap:14px">
           <div class="dark-card" style="padding:18px">
             <h2 style="font-size:13px;letter-spacing:3px">COME SI VINCE</h2>
-            <div class="formula"><span>Monete</span><em aria-label="più">+</em><span>Piacere</span><em aria-label="meno">−</em><span>Nei</span></div>
-            <p style="font-size:16px;line-height:1.5;color:#DCCFB5">Il punteggio si conta al Castello Sforzesco. Vince il <strong>ruolo</strong> con la media più alta, non il singolo: aiuta chi ha il tuo stesso ruolo.</p>
+            <div class="formula"><span>Monete</span><em aria-label="più">+</em><span>Piacere</span><em aria-label="meno">−</em><span>Nei</span><em aria-label="meno">−</em><span>2 × Infetti</span></div>
+            <p style="font-size:16px;line-height:1.5;color:#DCCFB5">Il punteggio si conta al Castello Sforzesco. I Piacere infetti non contano come Piacere: valgono −2 ciascuno. Vince il <strong>ruolo</strong> con la media più alta, non il singolo: aiuta chi ha il tuo stesso ruolo.</p>
           </div>
           <details class="acc" open>
             <summary>COME SI GUADAGNANO MONETE <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7A5810" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
             <div class="acc-in">
-              <p>I token si mettono nel <strong>sacchetto della guida</strong> e si prendono le Monete.</p>
+              <p>I token si mettono nel <strong>sacchetto della guida</strong> e si prendono le Monete. I token Piacere infetti non si possono depositare (vedi “Il Piacere infetto”).</p>
               <ul style="padding-left:20px;margin-top:8px;display:flex;flex-direction:column;gap:8px">
                 <li><strong>Dichiarazione di Virtù</strong> (solo Nobile): mostri la Carta Virtù alla guida davanti a tutti → 1 Moneta. Se hai Piacere in tasca e qualcuno ti accusa in quel momento, ricevi un neo.</li>
                 <li><strong>Piacere Condiviso</strong> (chiunque; il Moralista solo col Cicisbeo): vi scambiate 1 Piacere a testa, lo mettete nel sacchetto → 1 Moneta a testa.</li>
@@ -337,6 +337,19 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
               <ol><li>Dichiari persona e ruolo ad alta voce</li><li>La guida ti dà un adesivo nero</li><li>Lo applichi sul viso dell’accusato</li></ol>
               <div class="outcome"><div class="ok"><strong>Ruolo giusto</strong><br>+2 Monete per ogni neo che l’accusato aveva al momento dell’accusa</div><div class="ko"><strong>Ruolo sbagliato</strong><br>il neo resta, ma tu non guadagni e sprechi l’accusa</div></div>
               <p style="margin-top:10px">Le accuse si verificano al Castello Sforzesco. Il <strong>Cicisbeo</strong> è corruttibile: 1 Tabacco offerto prima che accusi gli fa rinunciare a quell’accusa. Il <strong>Moralista</strong> no: chi ci prova viene accusato subito.</p>
+            </div>
+          </details>
+          <details class="acc">
+            <summary>IL PIACERE INFETTO <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7A5810" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="acc-in">
+              <p>Alcuni token Piacere hanno un segno: sono <strong>infetti</strong>. Chi ne ha uno lo vede; chi lo riceve se ne accorge solo dopo averlo preso.</p>
+              <ul style="padding-left:20px;margin-top:8px;display:flex;flex-direction:column;gap:8px">
+                <li><strong>Non va mai nel sacchetto</strong>: non si converte in Monete.</li>
+                <li><strong>Puoi rifilarlo in uno scambio</strong>, come un Piacere qualsiasi.</li>
+                <li><strong>Puoi usarlo nel Piacere Condiviso</strong>: prendete comunque 1 Moneta a testa, ma il tuo partner non lo mette nel sacchetto e se lo tiene.</li>
+                <li><strong>Con 1 Tabacco</strong>, messo nel sacchetto della guida, puoi passarlo a un giocatore a tua scelta, senza scambio. Non può rifiutare.</li>
+              </ul>
+              <div class="outcome" style="grid-template-columns:1fr;margin-top:12px"><div class="ko"><strong>Al Castello Sforzesco</strong><br>−2 punti per ogni token infetto che hai ancora in mano</div></div>
             </div>
           </details>
           <details class="acc">

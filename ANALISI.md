@@ -39,6 +39,10 @@ Le sezioni 2–5 descrivono la versione **originale**, che resta salvata in `arc
 
 Restano aperti i punti 1 (al Vizioso conviene non convertire), 2 (la prima accusa vale 0), 5 (limite alla Dichiarazione di Virtù), 7 (valore del Tabacco a fine partita) e 8. Anche col Piacere Condiviso il punteggio non cambia: si perde 1 Piacere e si guadagna 1 Moneta.
 
+**Regole nuove decise il 19/10/2026** (già scritte nell'app):
+- **Gesto segreto:** ogni ruolo ha un gesto, pescato a caso a ogni partita dall'elenco gestito dalla guida, da fare dopo ogni scambio o guadagno di Monete. È vietato imitare quello degli altri ruoli.
+- **Piacere infetto:** alcuni token Piacere sono segnati e non vanno mai nel sacchetto. Si rifilano agli altri con uno scambio o con il Piacere Condiviso, oppure si passano a un giocatore a scelta pagando 1 Tabacco. Al Castello valgono −2 ciascuno. Il numero di token infetti lo decide la guida (indicativamente 1 ogni 6–8 giocatori); l'app non li gestisce, perché il gioco resta fisico.
+
 **Non risolti, perché servono decisioni o i file grafici originali:**
 - sezione 6: con il nuovo design le PNG non si usano più. Resta da decidere quale versione tenere per l'accusa del Cicisbeo (verso chiunque o solo verso chi ha interagito con lui). Il PDF dice "solo chi ha interagito", come l'app;
 - sezione 7, regolamento: sono decisioni di design, da prendere prima di toccare testi e schede.
