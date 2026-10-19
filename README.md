@@ -17,7 +17,6 @@ Web app di supporto a un gioco dal vivo a ruoli segreti (Nobile, Vizioso, Morali
 | `public/img/` | Tutte le immagini (vedi sotto) |
 | `firebase.json` | Configurazione di pubblicazione |
 | `database.rules.json` | Regole di sicurezza del database |
-| `.github/workflows/deploy.yml` | Pubblicazione automatica a ogni modifica |
 | `archivio/` | Versione originale (prima delle correzioni), schede PNG originali, vecchi backup. **Non viene pubblicata** |
 | `ANALISI.md` | Analisi completa: bug, problemi delle schede e del regolamento |
 | `REGOLE-E-IDEE.md` | Tutte le regole (v8.0, aggiunte, versione completa e semplificata) e le idee per il gioco di carte |
@@ -70,14 +69,8 @@ Questo comando pubblica sia il sito sia le regole del database. Da quel momento:
 - solo la guida, dopo il login, può generare codici;
 - i 610 codici vecchi non funzionano più. La guida li può cancellare con "Elimina i codici delle partite chiuse".
 
-### 3. Pubblicazione automatica da GitHub (facoltativa, ma serve per cambiare le immagini solo da GitHub)
-Dal PC, nella cartella del repo:
-```
-firebase init hosting:github
-```
-Rispondi `fox3001/Degrado_Milano-` quando chiede il repository. Il comando crea da solo il segreto `FIREBASE_SERVICE_ACCOUNT` su GitHub.
-
-Quando chiede di sovrascrivere i file del workflow, rispondi **no**, perché il file `deploy.yml` c'è già. Da lì in poi, ogni modifica in `public/` pubblica il sito da sola.
+### 3. Pubblicazione automatica
+In questo repo d'archivio la pubblicazione automatica è **disattivata**, per non entrare in conflitto con la versione tour (`fox3001/Degrado_Milano--TOUR-APP-`), che pubblica sullo stesso sito.
 
 ## Come funziona una partita
 1. La guida apre `/#guida`, fa il login, sceglie il numero di giocatori e preme **Nuova partita**.
