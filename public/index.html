@@ -323,10 +323,8 @@ details.acc ol{padding-left:20px;margin:8px 0 12px;}
               <ul style="padding-left:20px;margin-top:8px;display:flex;flex-direction:column;gap:8px">
                 <li><strong>Dichiarazione di Virtù</strong> (solo Nobile): mostri la Carta Virtù alla guida davanti a tutti → 1 Moneta. Se hai Piacere in tasca e qualcuno ti accusa in quel momento, ricevi un neo.</li>
                 <li><strong>Piacere Condiviso</strong> (chiunque; il Moralista solo col Cicisbeo): vi scambiate 1 Piacere a testa, lo mettete nel sacchetto → 1 Moneta a testa.</li>
-                <li><strong>1 Piacere + 1 Tabacco → 1 Moneta</strong> (solo Vizioso e Cicisbeo), da soli.</li>
-                <li><strong>2 Piacere → 1 Moneta</strong> (solo Vizioso e Cicisbeo), con discrezione.</li>
-                <li><strong>Circolo di Tabacco</strong> (chiunque): 3 o 4 giocatori in cerchio, ognuno mette 1 Tabacco → 1 Moneta a testa. È l’azione più pubblica del gioco.</li>
-                <li><strong>Tabacco come moneta nera</strong>: offrilo in cambio di informazioni, favori, promesse. Nessuno è obbligato a mantenerle.</li>
+                <li><strong>2 Piacere → 1 Moneta</strong> (solo Vizioso), da solo e con discrezione.</li>
+                <li><strong>Il Tabacco non si converte in Monete</strong>: serve a passare un Piacere infetto e a corrompere il Cicisbeo. Puoi anche offrirlo in cambio di favori e informazioni.</li>
               </ul>
             </div>
           </details>
@@ -501,17 +499,17 @@ const ROLES = {
     motto:'Di sole apparenze fai virtù',
     tok:{Monete:2, Tabacco:0, Piacere:0},
     rp1:'Sei il volto rispettabile della corte. La tua reputazione è il tuo bene più prezioso — e la tua arma più affilata.<br><br>Il tuo canale esclusivo è la <strong>Dichiarazione di Virtù</strong>: mostri la carta alla guida davanti a tutti, declami nome e grado nobiliare in maniera plateale e guadagni 1 Moneta.',
-    rp2:'Partecipa ai <strong>Circoli di Tabacco</strong> con altri giocatori per guadagnare Monete in modo rispettabile.<br><br>Puoi fare <strong>Piacere Condiviso</strong> con chiunque — ma fallo con discrezione.<br><br><strong>Attenzione:</strong> se dichiari Virtù mentre hai Piacere in tasca e qualcuno ti accusa, ricevi un neo.',
-    op1:{t:'Mantieni la reputazione immacolata. Guadagna attraverso la Virtù e i Circoli rispettabili — senza mai sporcarti le mani con il vizio.',n:'Vince il ruolo con la media più alta: aiuta gli altri Nobili ad accumulare punti.'},
-    op2:{t:['Osserva chi si comporta in modo sospetto: anche se non puoi accusare, puoi suggerire al Moralista chi tenere d’occhio, in cambio di protezione.','Usa il Tabacco come moneta nera per costruire alleanze.'],n:'Non rivelare mai il tuo ruolo, nemmeno agli alleati.'}
+    rp2:'Puoi fare <strong>Piacere Condiviso</strong> con chiunque — ma fallo con discrezione.<br><br><strong>Attenzione:</strong> se dichiari Virtù mentre hai Piacere in tasca e qualcuno ti accusa, ricevi un neo.',
+    op1:{t:'Mantieni la reputazione immacolata. Guadagna attraverso la Virtù — senza mai sporcarti le mani con il vizio.',n:'Vince il ruolo con la media più alta: aiuta gli altri Nobili ad accumulare punti.'},
+    op2:{t:['Osserva chi si comporta in modo sospetto: anche se non puoi accusare, puoi suggerire al Moralista chi tenere d’occhio, in cambio di protezione.','Compra Tabacco: ti servirà per liberarti di un Piacere infetto o per corrompere un Cicisbeo.'],n:'Non rivelare mai il tuo ruolo, nemmeno agli alleati.'}
   },
   VIZ:{name:'VIZIOSO', plural:'VIZIOSI', color:'#8C1F5A', tint:'#F5E3EC', img:'img/viz-personaggi.jpg',
     motto:'Conto a zero, come la morale',
     tok:{Monete:0, Tabacco:1, Piacere:3},
-    rp1:'Hai tutto il Piacere del mondo ma nessun soldo. Devi convertire i token in Monete senza farti notare dal Moralista o dal Cicisbeo.<br><br>Da solo: <strong>2 Piacere → 1 Moneta</strong>, oppure <strong>1 Piacere + 1 Tabacco → 1 Moneta</strong>.<br><br>Con un altro: <strong>Piacere Condiviso</strong> — guadagnate entrambi 1 Moneta, ma siete più visibili.',
+    rp1:'Hai tutto il Piacere del mondo ma nessun soldo. Devi convertire i token in Monete senza farti notare dal Moralista o dal Cicisbeo.<br><br>Da solo: <strong>2 Piacere → 1 Moneta</strong>.<br><br>Con un altro: <strong>Piacere Condiviso</strong> — guadagnate entrambi 1 Moneta, ma siete più visibili.',
     rp2:'Sei il <strong>bersaglio principale</strong> del Moralista e del Cicisbeo. Ogni azione ti espone — scegli bene quando agire.<br><br>Durante la <strong>narrazione della guida</strong> è il momento migliore per convertire: meno occhi su di te.<br><br>Non puoi accusare nessuno. La tua unica difesa è l’invisibilità.',
     op1:{t:'Converti tutto il Piacere in Monete prima che il tour finisca. Fallo nell’ombra, velocemente, senza farti accusare.',n:'Ogni Piacere non convertito conta nel punteggio finale — ma un neo può azzerare tutto.'},
-    op2:{t:['Trova un alleato — un altro Vizioso o un Cicisbeo — con cui fare Piacere Condiviso in sicurezza.','Usa il Tabacco per comprare silenzio: offri 1 Tabacco a chi ti ha visto agire.'],n:'Non fidarti mai di chi si offre di aiutarti troppo facilmente: potrebbe essere il Cicisbeo.'}
+    op2:{t:['Trova un alleato — un altro Vizioso o un Cicisbeo — con cui fare Piacere Condiviso in sicurezza.','Tieni da parte il tuo Tabacco: se ti rifilano un Piacere infetto, ti serve per liberartene.'],n:'Non fidarti mai di chi si offre di aiutarti troppo facilmente: potrebbe essere il Cicisbeo.'}
   },
   MOR:{name:'MORALISTA', plural:'MORALISTI', color:'#6B4E9B', tint:'#EFE6F5', img:'img/mor-personaggi.jpg',
     motto:'Controlli gli altri per distrarti dai tuoi desideri più sporchi',
@@ -519,13 +517,13 @@ const ROLES = {
     rp1:'Sei il censore della corte. Puoi accusare — ma solo <strong>2 volte</strong> in tutto il tour. Ogni accusa deve essere precisa: dichiari nome e ruolo ad alta voce.<br><br>Se indovini → <strong>+2 Monete per ogni neo</strong> che aveva l’accusato.<br>Se sbagli → nessun guadagno, accusa sprecata.',
     rp2:'<strong>Non sei corruttibile.</strong> Se qualcuno prova a offrirti qualcosa per evitare un’accusa, lo accusi immediatamente.<br><br>Puoi fare Piacere Condiviso <strong>solo col Cicisbeo</strong>.<br><br>Osserva tutto: chi scambia con chi, chi si avvicina al sacchetto, chi evita gli occhi.',
     op1:{t:'Usa le 2 accuse nel momento giusto — quando sei sicuro e quando l’accusato ha già accumulato nei. Un’accusa su un giocatore con 2 nei vale 4 Monete.',n:'Non accusare mai per fretta. Aspetta.'},
-    op2:{t:['Lascia che i Viziosi agiscano: più agiscono, più si espongono.','Partecipa ai Circoli di Tabacco: ti danno informazioni su chi ha token.'],n:'La tua reputazione di incorruttibile è la tua forza: usala per spaventare, non solo per accusare.'}
+    op2:{t:['Lascia che i Viziosi agiscano: più agiscono, più si espongono.','Hai più Tabacco di tutti: chi ha un Piacere infetto verrà da te a comprarlo. Ogni trattativa è un’informazione.'],n:'La tua reputazione di incorruttibile è la tua forza: usala per spaventare, non solo per accusare.'}
   },
   CIC:{name:'CICISBEO', plural:'CICISBEI', color:'#4F7350', tint:'#E5EEE3', img:'img/cic-personaggi.jpg',
     motto:'Accessorio con le gambe',
     tok:{Monete:1, Tabacco:1, Piacere:1},
     rp1:'Sei il fulcro della corte. Puoi fare quasi tutto — ma con una regola ferrea: <strong>non proponi mai tu per primo.</strong> Aspetti sempre che qualcuno venga da te.<br><br>Puoi accusare (max 2 volte) — ma solo chi ha già interagito con te durante il tour.',
-    rp2:'<strong>Vulnerabilità:</strong> se qualcuno ti offre 1 Tabacco prima che tu accusi, sei obbligato a rinunciare a quell’accusa.<br><br>Come il Vizioso, puoi convertire: <strong>2 Piacere → 1 Moneta</strong>, oppure <strong>1 Piacere + 1 Tabacco → 1 Moneta</strong>.<br><br>Ogni persona che viene da te è un’informazione. Più interazioni hai, più bersagli per le accuse.',
+    rp2:'<strong>Vulnerabilità:</strong> se qualcuno ti offre 1 Tabacco prima che tu accusi, sei obbligato a rinunciare a quell’accusa.<br><br>Ogni persona che viene da te è un’informazione. Più interazioni hai, più bersagli per le accuse.',
     op1:{t:'Lascia che la corte venga da te. Accumula interazioni, raccogli informazioni, poi usa le 2 accuse con precisione su chi hai già visto in azione.',n:'Puoi accusare solo chi ha interagito con te: ogni interazione è un potenziale bersaglio.'},
     op2:{t:['Posizionati sempre al centro del gruppo. Sembri disponibile, curioso, innocuo.','Non fare mai la prima mossa — anche quando vorresti proporre uno scambio. Aspetta.'],n:'Sei l’unico che può essere corrotto. Sfruttalo: fai capire che sei corruttibile per attirare chi ha qualcosa da nascondere.'}
   }
